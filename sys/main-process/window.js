@@ -19,6 +19,10 @@ let wdock_id = 0;
   * @type {number} */
 let zid = 0; // Z-index Identifier
 
+/** A callback called when a new window is made
+  * @type {void|function} */
+let onWindowMade;
+
 /**
   * The window class
   * @param {object} options
@@ -441,15 +445,15 @@ const NWindow = function(options) {
   // Make this window active
   this.foreground();
 
-  // Move it
-  win.style.top  = '60px';
-  win.style.left = '40px';
-
   // Restore the window
   win.classList.add('restored');
 
   // Freeze this object
   Object.freeze(this);
+
+  // Trigger the 'made' event
+  if(onWindowMade)
+    onWindowMade(this);
 };
 
 let fromX, fromY, fromTop, fromLeft, fromRight, fromBottom, dragging,
