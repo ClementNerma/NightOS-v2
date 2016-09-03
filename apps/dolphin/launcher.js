@@ -81,9 +81,24 @@
   // View the desktop by minimizing all windows when the desktop viewer
   // button is clicked.
   desktopView.addEventListener('click', () => {
+    // If all windows are minimized...
+    let minimized = true;
+
     for(let id of Reflect.ownKeys(Windows))
-      Windows[id].minimize();
+      if(!Windows[id].is('minimized')) {
+        minimized = false;
+        break;
+      }
+
+    for(let id of Reflect.ownKeys(Windows))
+      // ... display them all ...
+      if(minimized)
+        Windows[id].foreground();
+      else
+      // ... else minimize them all
+        Windows[id].minimize();
   });
+
   notifications.appendChild(desktopView);
 
   /** The clock element
@@ -112,7 +127,8 @@
       * @type {Element} */
     let task = document.createElement('div');
     task.innerText = $win.getTitle();
-    // When the task is clicked, make the window visible
+
+    // When the task is clicked...
     task.addEventListener('click', () => {
       // If the window is the active one...
       if($win.is('active'))
