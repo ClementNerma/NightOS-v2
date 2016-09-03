@@ -5,35 +5,35 @@
 
 'use strict';
 
+/**
+  * Load a stylesheet
+  * @param {string} name
+  * @returns {void}
+  */
+function loadStylesheet(name) {
+  /** The windows stylesheet
+    * @type {string} */
+  let stylesheet;
+
+  // Try to load it
+  try { stylesheet = fs.readFileSync(n('/sys/style/' + name + '.css', true), SYSTEM_ENCODING); }
+  // If fail...
+  catch(e) { error(tr('Failed to load the ' + name + ' stylesheet'), e); }
+
+  // Make a DOM element
+  /** The windows stylesheet DOM element
+    * @type {Element} */
+  let style = document.createElement('style');
+  style.setAttribute('type', 'text/css');
+  style.innerHTML = stylesheet;
+  document.body.insertBefore(style, document.body.firstChild);
+}
+
 // All the UI code is runned into an IIFE to isolate the local variables.
 // These variables are useless for the system and may polluate the global object
 // if they are not isolated.
 
 (function() {
-  /**
-    * Load a stylesheet
-    * @param {string} name
-    * @returns {void}
-    */
-  function loadStylesheet(name) {
-    /** The windows stylesheet
-      * @type {string} */
-    let stylesheet;
-
-    // Try to load it
-    try { stylesheet = fs.readFileSync(n('/sys/style/' + name + '.css', true), SYSTEM_ENCODING); }
-    // If fail...
-    catch(e) { error(tr('Failed to load the ' + name + ' stylesheet'), e); }
-
-    // Make a DOM element
-    /** The windows stylesheet DOM element
-      * @type {Element} */
-    let style = document.createElement('style');
-    style.setAttribute('type', 'text/css');
-    style.innerHTML = stylesheet;
-    document.body.insertBefore(style, document.body.firstChild);
-  }
-
   // Load the system stylesheets
   loadStylesheet('font-awesome');
   loadStylesheet('main');
@@ -44,6 +44,9 @@
   wdock = document.createElement('div');
   wdock.setAttribute('night-role', 'window');
   wdock.setAttribute('id', 'windock');
+  // Make the container invisible ; if the windows are displayed before the
+  // launcher is ready it will display ugly things at the screen.
+  wdock.style.display = 'none';
   // Insert it at the beginning of the <body> tag
   document.body.insertBefore(wdock, document.body.firstChild);
 

@@ -36,5 +36,6 @@
   "Application \"${name}\" crashed": "L'application \"${name}\" a planté",
   "The application \"${name}\" stopped due to an error.\nPlease read informations below.": "L'application \"${name}\" a été stoppée en raison d'un erreur.\nMerci de lire les informations ci-dessous.",
   "Failed to load system resources for application \"${name}\". Please try again.": "Une erreur est survenue durant le chargement des ressources systèmes pour l'application \"${name}\". Veuillez réessayer.",
-  "Syntax error in the \"${name}\" application's main file": "Erreur de syntaxe dans le fichier principal de l'application \"${name}\""
+  "Syntax error in the \"${name}\" application's main file": "Erreur de syntaxe dans le fichier principal de l'application \"${name}\"",
+  "Failed to load the translation package for \"${language}\"": "L'ouverture du paquet de traduction pour \"${language}\" a échouée"
 }

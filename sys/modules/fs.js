@@ -18,12 +18,11 @@
   * @returns {string|NightError} Returns a <NightError> instance of the given path
   */
 function can(action, path) {
-
   if(perms === '*')
     return path;
 
   // Normalize the path and use the CWD
-  path = n(path, cwd);
+  path = n(path, false, cwd);
 
   if(!perms.includes(action))
     return new NightError('Ticket doesn\'t have the permission "${action}"', {action});
@@ -51,7 +50,7 @@ let folders = runtime.ticket.foldersAccess || [];
 
 /** The current working directory
   * @type {string} */
-let cwd = n(runtime.path, true).replace(SEP_REGEXP, '/');
+let cwd = n(runtime.path, false);
 
 // This step is ignored for all-powerful tickets
 // OR if there is no accessible folders (which is a stupid thing)
@@ -79,14 +78,14 @@ $export.DIR_SEP = DIR_SEP;
   * @param {string} path The path to format
   */
 // NOTE: Absolute paths is not allowed here
-$export.normalize = (path) => n(path);
+$export.normalize = (path) => n(path, true, cwd);
 
 /**
   * Make a path absolute to the system's root
   * @param {string} path
   * @returns {string}
   */
-$export.makeAbsolute = path => n(path, cwd).substr(BASE_DIR.length).replace(SEP_REGEXP, '/');
+$export.makeAbsolute = path => '/' + n(path, true, cwd).substr(BASE_DIR.length + 1).replace(SEP_REGEXP, '/');
 
 /**
   * Set the current working directory
@@ -95,11 +94,11 @@ $export.makeAbsolute = path => n(path, cwd).substr(BASE_DIR.length).replace(SEP_
   */
 $export.chdir = (path) => {
   try {
-    if(!fs.lstatSync(n(path, cwd)).isDirectory())
+    if(!fs.lstatSync(n(path, true, cwd)).isDirectory())
       return new NightError('This is not a directory', {path});
 
     // Set the new CWD
-    cwd = n(path, cwd);
+    cwd = n(path, false, cwd);
   }
 
   catch(e) { return new NightError('Failed to open directory', {path}); }
@@ -109,7 +108,7 @@ $export.chdir = (path) => {
   * Get the current working directory
   * @returns {string}
   */
-$export.cwd = () => cwd.substr(BASE_DIR.length);
+$export.cwd = () => cwd;
 
 /**
   * Check if an item exists
@@ -117,7 +116,7 @@ $export.cwd = () => cwd.substr(BASE_DIR.length);
   * @returns {boolean|NightError}
   */
 $export.exists = (path) => {
-  try { return !fs.existsSync(path); }
+  try { return fs.existsSync(path); }
   catch(e) { return new NightError({path, jsError: e}); }
 };
 
@@ -127,7 +126,7 @@ $export.exists = (path) => {
   * @returns {boolean|NightError}
   */
 $export.fileExists = (path) => {
-  try { return !fs.lstatSync(n(path, cwd)).isFile(); }
+  try { return fs.lstatSync(n(path, true, cwd)).isFile(); }
   catch(e) { return new NightError({path, jsError: e}); }
 };
 
@@ -137,7 +136,7 @@ $export.fileExists = (path) => {
   * @returns {boolean}
   */
 $export.dirExists = (path) => {
-  try { return !fs.lstatSync(n(path, cwd)).isDirectory(); }
+  try { return fs.lstatSync(n(path, true, cwd)).isDirectory(); }
   catch(e) { return new NightError({path, jsError: e}); }
 };
 
@@ -152,7 +151,7 @@ $export.writeFile = (path, content, encoding = SYSTEM_ENCODING) => {
   if(e(path = can('file/write', path)))
     return path;
 
-  try { fs.writeFileSync(n(path, cwd), content, encoding); }
+  try { fs.writeFileSync(n(path, true, cwd), content, encoding); }
   catch(e) { return new NightError({path, jsError: e}); }
 };
 
@@ -167,7 +166,7 @@ $export.appendFile = (path, content, encoding = SYSTEM_ENCODING) => {
   if(e(path = can('file/write', path)))
     return path;
 
-  try { fs.appendFileSync(n(path, cwd), content, encoding); }
+  try { fs.appendFileSync(n(path, true, cwd), content, encoding); }
   catch(e) { return new NightError({path, jsError: e}); }
 };
 
@@ -181,7 +180,7 @@ $export.readFile = (path, encoding = SYSTEM_ENCODING) => {
   if(e(path = can('file/read', path)))
     return path;
 
-  try { return fs.readFileSync(n(path, cwd), encoding); }
+  try { return fs.readFileSync(n(path, true, cwd), encoding); }
   catch(e) { return new NightError({path, jsError: e}); }
 };
 
@@ -194,7 +193,7 @@ $export.removeFile = (path) => {
   if(e(path = can('file/remove', path)))
     return path;
 
-  try { fs.unlinkSync(n(path, cwd)); }
+  try { fs.unlinkSync(n(path, true, cwd)); }
   catch(e) { return new NightError({path, jsError: e}); }
 }
 
@@ -207,7 +206,7 @@ $export.makeFolder = (path) => {
   if(e(path = can('folder/make', path)))
     return path;
 
-  try { fs.mkdirSync(n(path, cwd)); }
+  try { fs.mkdirSync(n(path, true, cwd)); }
   catch(e) { return new NightError({path, jsError: e}); }
 };
 
@@ -220,7 +219,7 @@ $export.readFolder = (path) => {
   if(e(path = can('folder/read', path)))
     return path;
 
-  try { return fs.readdirSync(n(path, cwd)); }
+  try { return fs.readdirSync(n(path, true, cwd)); }
   catch(e) { return new NightError({path, jsError: e}); }
 };
 
@@ -233,6 +232,7 @@ $export.readFolder = (path) => {
   *                           "file/rename" AND the "folder/rename" permission
   * @returns {void|NightError}
   */
+/*
 $export.rename = (path, newName, strict = false) => {
   // NOTE: Because checking if the item is a file or a folder takes a lot of time,
   //       this function consider that the ticket must have the "file/rename"
@@ -241,23 +241,23 @@ $export.rename = (path, newName, strict = false) => {
   //       requires one of these permissions.
 
   if(!strict) { // Non-strict mode, check for two permissions
-    if(e(path = can('file/rename')))
+    if(e(path = can('file/rename', path)))
       return path;
 
-    if(e(path = can('folder/rename')))
+    if(e(path = can('folder/rename', path)))
       return path;
   } else { // Strict mode, check the item type and ask only for one permission
     // Get the item's type
     let type;
 
-    try { type = fs.lstatSync(path).isDirectory(); }
+    try { type = fs.lstatSync(n(path, true, cwd)).isDirectory(); }
     catch(e) { return new NightError('Failed to check the item\'s type', {path, jsError: e}); }
 
     // Check for the correct permission
     if(type === true) // folder
-      path = can('folder/rename');
+      path = can('folder/rename', path);
     else // file
-      path = can('file/rename');
+      path = can('file/rename', path);
 
     // If an error was returned...
     if(e(path))
@@ -266,6 +266,7 @@ $export.rename = (path, newName, strict = false) => {
   }
 
   // Now we can perform the name changing !
-  try { fs.renameSync(path, newName); }
+  try { fs.renameSync(n(path, null, true), n(newName, null, true)); }
   catch(e) { return new NightError({path, jsError: e}); }
 };
+*/

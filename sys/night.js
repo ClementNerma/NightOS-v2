@@ -105,9 +105,10 @@ const Night = (new (function() {
     * Format a path
     * @param {string} path The path to format
     * @param {boolean|string} [systemBase] Add the system path (e.g. C:\...)
+    * @param {string} [cwd] The current working directory for relative path normalization
     * @returns {string} The formatted path
     */
-  this.normalize = (path, systemBase = false) => {
+  this.normalize = (path, systemBase = false, cwd = null) => {
     // NOTE: The system separator is replaced by the '/' separator, excepted if
     //       the 'systemBase' argument is defined.
 
@@ -117,11 +118,22 @@ const Night = (new (function() {
 
     // Support for 'undefined' given as a path
     path = path || '';
+    // Convert all directory separators into slashes
+    path = path.replace(SEP_REGEXP, '/');
+
+    /** The system's path
+      * @type {string} */
+    let systemPath = (typeof systemBase === 'boolean' ? BASE_DIR : systemBase).replace(SEP_REGEXP, '/');
+
+    /** Is it using the system path ?
+      * @type {boolean} */
+    let isSystem = systemBase && path.substr(0, systemPath.length) === systemPath;
 
     // Put the system path (if asked)
     // Split the path by seperators (here, slashes)
     // The '' part permit to work even if there is no path specified, else it would cause a fatal error
-    path = ((systemBase ? (typeof systemBase === 'boolean' ? BASE_DIR : systemBase) + '/' : '') + path).split(SEP_REGEXP);
+    path = ((systemBase && !isSystem ? systemPath + '/' : '') + (!path.startsWith('/') && typeof cwd === 'string' && !isSystem ? cwd + '/' : '') + path).split('/');
+    //path = ((isSystem ? systemPath + '/' : '') + (!path.substr(0, 1).match(SEP_REGEXP) && typeof cwd === 'string' && !isSystem ? cwd : '') + path).split(SEP_REGEXP);
 
     for(let part of path) {
       if(part === '..')
@@ -131,7 +143,7 @@ const Night = (new (function() {
     }
 
     if(!out.length)
-      out.push(sep);
+      out.push('');
     else if(out[0] && !systemBase)
       out.unshift('');
 
@@ -536,11 +548,34 @@ const Night = (new (function() {
             this.makeErrorModal(tr('Application "${name}" crashed', {name}), tr('The application "${name}" stopped due to an error.\nPlease read informations below.') + '\n\n' + event.args[2] ? tr(event.args[0], event.args[2]) : event.args[0], event.args[1]);
           break;
 
+        // If it's a load script request
+        case 'load-script':
+          /** The script's DOM element
+            * @type {Element} */
+          let script = document.createElement('script');
+          script.setAttribute('type', 'text/javascript');
+          script.setAttribute('src', event.args[0]);
+
+          // If the script failed to load...
+          script.addEventListener('error', () => {
+            webview.send('script-loaded', event.args[0], false);
+          });
+          // If the script loaded successfully...
+          script.addEventListener('load', () => {
+            webview.send('script-loaded', event.args[0], true);
+          });
+
+          // Start the script's loading
+          document.body.appendChild(script);
+
+          break;
+
         default:
-          error(new NightError('Unknown request "${channel}" from child "${name}"', { channel: event.channel, name }));
+          error(`Unknown request "${event.channel}" from child "${name}"`);
           break;
       }
     });
+
     document.body.appendChild(webview);
 
     // TODO: Remove that

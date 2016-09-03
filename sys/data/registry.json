@@ -2,7 +2,9 @@
   "ui": {
     "launcher": {
         "application": "dolphin",
-        "arguments": {}
+        "arguments": {
+          "launcher": true
+        }
     }
   },
   "crash-save": {

@@ -12,3 +12,40 @@ if(runtime.ticket.level < ROOT_LEVEL)
 $export.process = process;
 // Give the 'window' access
 $export.window = window;
+
+/** Loading scripts
+  * @type {object} */
+let scripts = {};
+
+/**
+  * Load a script into the main process
+  * @param {string} path
+  * @param {function} [errorCallback] Runned when the script failed to load
+  * @param {function} [loadCallback] Runned when the script loaded successfully
+  * @returns {void}
+  */
+$export.loadScript = (path, errorCallback, loadCallback) => {
+  scripts[path] = [errorCallback, loadCallback];
+  ipc.sendToHost('load-script', path);
+};
+
+// When a script is loaded
+ipc.on('script-loaded', (event, path, state) => {
+  console.log(path + ' = ' + state.toString());
+  return ;
+  /*// If the script failed to load
+  if(state === 'true') {
+    // Run the error callback
+    if(scripts[path][0])
+      scripts[path][0]();
+  } else { // If the script loaded successfully
+    // Run the success callback
+    if(scripts[path][1])
+      scripts[path][1]();
+  }*/
+
+  if(scripts[path][state === 'true' ? 1 : 0])
+    scripts[path][state === 'true' ? 1 : 0]();
+
+  delete scripts[path];
+});

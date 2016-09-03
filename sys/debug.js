@@ -22,10 +22,10 @@ let isErrorRunning = false;
 /**
   * Throw a fatal error
   * @param {string} message
-  * @param {Error} [error] A JavaScript native error
+  * @param {Error|NightError} [error] A JavaScript native error
   * @returns {void}
   */
-const error = (message, error) => {
+const error = (message, error) => {  
   // If the given error is an instance of the <NightError> class...
   if(error && error instanceof NightError)
     // Make it a standard error
