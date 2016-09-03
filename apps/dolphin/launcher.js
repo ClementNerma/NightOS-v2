@@ -81,11 +81,21 @@
     task.addEventListener('click', () => $win.foreground());
     taskbar.appendChild(task);
 
+    /** The close element
+      * @type {Element} */
+    let close = document.createElement('span');
+    close.setAttribute('title', tr('Close the window'));
+    close.className = 'fa fa-times close';
+    task.appendChild(close);
+
+    // Close the window when the close button is clicked
+    close.addEventListener('click', () => $win.close());
+
     // Change the element's appearance when the window is made active...
-    $win.on('foreground', () => { task.classList.add('active'); });
+    $win.on('foreground', () => task.classList.add('active'));
 
     // or inactive
-    $win.on('background', () => { task.classList.remove('active'); });
+    $win.on('background', () => task.classList.remove('active'));
 
     // Update the element when the title changes
     $win.on('title-changed', ($win, title) => {

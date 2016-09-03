@@ -78,6 +78,7 @@ body .night-window-frame:not(iframe) {
   background-color: #80BFFF;
 }
 
+/* Taskbar */
 #taskbar {
   z-index: 2;
   position: absolute;
@@ -88,6 +89,7 @@ body .night-window-frame:not(iframe) {
   background-color: #3399FF;
 }
 
+/* Tasks */
 #taskbar div {
   border-right: 1px solid darkgray;
   padding: 5px;
@@ -99,10 +101,27 @@ body .night-window-frame:not(iframe) {
   cursor: default;
 }
 
+/* Close button */
+#taskbar div span {
+  margin-left: 5px;
+}
+
+#taskbar div span:hover {
+  cursor: pointer;
+  color: red;
+}
+
+/* When a task is active */
 #taskbar div.active {
   color: orange;
 }
 
+/* Close button for active tasks */
+#taskbar div.active span {
+  color: darkorange;
+}
+
+/* Invisible tasks */
 #taskbar div.invisible {
   display: none;
 }
