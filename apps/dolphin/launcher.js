@@ -95,6 +95,12 @@
     // Remove the element when the window is closed
     $win.on('closed', () => task.remove());
 
+    // Hide the task when the window is hidden...
+    $win.on('hidden', () => task.classList.add('invisible'));
+
+    // And show it when the window is shown
+    $win.on('shown', () => task.classList.remove('invisible'));
+
     // If the window is visible, trigger the 'foreground' event
     $win.trigger('foreground');
   };
