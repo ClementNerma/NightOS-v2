@@ -11,7 +11,7 @@ NightOS allows you to run JavaScript-written applications into a safe context. T
 
 Applications are runned into new threads that are isolated from the main process which manages them. That allows great performances ; if an application requires a lot of power the OS will use its built-in load balancer to give it a higher priority than the other processes.
 
-Further details will come soon in the documentation.
+Further details will come soon in the documentation or in the [OpenClassrooms thread (french)](https://openclassrooms.com/forum/sujet/desktop-environment-nightos-le-retour).
 
 # Installation
 

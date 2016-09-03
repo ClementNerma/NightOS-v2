@@ -9,7 +9,7 @@ NightOS vous permet d'exécuter des applications écrites en JavaScript dans un 
 
 Les applications sont exécutées dans des processus séparés qui sont isolés du processus principal qui les contrôle. Cela permet d'obtenir de bonnes performances ; si une application nécessite une grosse puissance de calcul, l'OS va utiliser son load balancer intégré pour lui donner une plus grande priorité que les autres processus.
 
-Plus de détails seront bientôt disponibles dans la documentation ou bien sur le thread OpenClassrooms :
+Plus de détails seront bientôt disponibles dans la documentation ou bien sur le [thread OpenClassrooms](https://openclassrooms.com/forum/sujet/desktop-environment-nightos-le-retour).
 
 # Installation
 
