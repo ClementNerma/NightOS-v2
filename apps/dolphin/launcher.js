@@ -73,16 +73,34 @@
   notifications.setAttribute('id', 'notifications');
   taskbar.appendChild(notifications);
 
+  /** The desktop view button
+    * @type {Element} */
+  let desktopView = document.createElement('span');
+  desktopView.setAttribute('id', 'desktop-view');
+  desktopView.setAttribute('title', tr('View the desktop'));
+  // View the desktop by minimizing all windows when the desktop viewer
+  // button is clicked.
+  desktopView.addEventListener('click', () => {
+    for(let id of Reflect.ownKeys(Windows))
+      Windows[id].minimize();
+  });
+  notifications.appendChild(desktopView);
+
   /** The clock element
     * @type {Element} */
   let clock = document.createElement('span');
   clock.setAttribute('id', 'clock');
   notifications.appendChild(clock);
 
+  /** Update the clock
+    * @returns {void} */
+  let updateClock = () => clock.innerText = (new Date()).toLocaleTimeString() + '\n' + (new Date()).toLocaleDateString();
+
+  // Update the clock
+  updateClock();
+
   // Set a time interval for the clock
-  setInterval(() => {
-    clock.innerText = (new Date()).toLocaleTimeString() + '\n' + (new Date()).toLocaleDateString();
-  }, 1000);
+  setInterval(updateClock, 1000);
 
   // Put an event when a new window is made...
   onWindowMade = ($win, el) => {

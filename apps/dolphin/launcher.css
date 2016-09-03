@@ -88,6 +88,7 @@ body .night-window-frame:not(iframe) {
   height: 40px;
   background-color: #3399FF;
   font-family: "Liberation Mono";
+  font-size: 14px;
 }
 
 /* Tasks */
@@ -95,7 +96,6 @@ body .night-window-frame:not(iframe) {
   border-right: 1px solid darkgray;
   padding: 5px;
   display: inline-block;
-  font-size: 14px;
   padding: 10px;
   overflow: hidden;
   cursor: default;
@@ -134,10 +134,25 @@ body .night-window-frame:not(iframe) {
   height: 40px;
 }
 
+/* Clock */
 #clock {
   padding: 3px;
   display: inline-block;
-  font-size: 14px;
-  border-left: 1px solid gray;
+  /* no border-left here because every notification has a border-right
+     property set */
   text-align: center;
+  float: right;
+}
+
+/* Desktop viewer */
+#desktop-view {
+  border-left: 1px solid gray;
+  width: 6px;
+  height: 40px;
+  float: right;
+  background-color: #5BADFF;
+}
+
+#desktop-view:hover {
+  background-color: #99CCFF;
 }
