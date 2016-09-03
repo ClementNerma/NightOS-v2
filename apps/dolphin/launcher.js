@@ -127,8 +127,16 @@
       * @type {Element} */
     let task = document.createElement('div');
 
+    /** Was the window closed ?
+      * @type {boolean} */
+    let closed = false;
+
     // When the task is clicked...
     task.addEventListener('click', () => {
+      // If the window was removed...
+      if(closed)
+        return ;
+
       // If the window is the active one...
       if($win.is('active'))
         // Minimize it
@@ -182,7 +190,7 @@
     });
 
     // Remove the element when the window is closed
-    $win.on('closed', () => task.remove());
+    $win.on('closed', () => { task.remove(); closed = true; });
 
     // Hide the task when the window is hidden...
     $win.on('hidden', () => task.classList.add('invisible'));
