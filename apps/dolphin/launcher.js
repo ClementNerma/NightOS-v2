@@ -73,6 +73,17 @@
   notifications.setAttribute('id', 'notifications');
   taskbar.appendChild(notifications);
 
+  /** The clock element
+    * @type {Element} */
+  let clock = document.createElement('span');
+  clock.setAttribute('id', 'clock');
+  notifications.appendChild(clock);
+
+  // Set a time interval for the clock
+  setInterval(() => {
+    clock.innerText = (new Date()).toLocaleTimeString() + '\n' + (new Date()).toLocaleDateString();
+  }, 1000);
+
   // Put an event when a new window is made...
   onWindowMade = ($win, el) => {
     el.style.top  = '60px';
@@ -85,6 +96,7 @@
     task.innerText = $win.getTitle();
     // When the task is clicked, make the window visible
     task.addEventListener('click', () => $win.foreground());
+    task.className = 'task';
     taskbar.appendChild(task);
 
     /** The close element
