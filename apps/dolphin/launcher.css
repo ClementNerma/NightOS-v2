@@ -18,6 +18,7 @@ body .night-window-title {
   background-color: #99CCFF;
   color: white;
   padding: 0;
+  -webkit-user-select: none;
 }
 
 /* Windows title bar content */
@@ -103,6 +104,7 @@ body .night-window.minimized {
   padding: 12px;
   overflow: hidden;
   cursor: default;
+  -webkit-user-select: none;
 }
 
 /* Close button */
@@ -151,6 +153,7 @@ body .night-window.minimized {
      property set */
   text-align: center;
   float: right;
+  -webkit-user-select: none;
 }
 
 /* Desktop viewer */
@@ -160,6 +163,7 @@ body .night-window.minimized {
   height: 40px;
   float: right;
   background-color: #5BADFF;
+  -webkit-user-select: none;
 }
 
 #desktop-view:hover {
