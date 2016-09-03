@@ -119,8 +119,7 @@ const NWindow = function(options) {
       // Show it
       win.classList.remove('invisible');
       // Trigger the event
-      if(events.visible)
-        events.visible(this);
+      this.trigger('visible');
     }
   };
 
@@ -134,8 +133,7 @@ const NWindow = function(options) {
       // Hide it
       win.classList.add('invisible');
       // Trigger the event
-      if(events.hidden)
-        events.hidden(this);
+      this.trigger('hidden');
     }
   };
 
@@ -170,8 +168,7 @@ const NWindow = function(options) {
     // Add a class marker
     win.classList.add('maximized');
     // Trigger the event
-    if(events.maximized)
-      events.maximized(this);
+    this.trigger('maximized');
   };
 
   /**
@@ -196,8 +193,7 @@ const NWindow = function(options) {
     // Add a class marker
     win.classList.add('restored');
     // Trigger the event
-    if(events.restored)
-      events.restored(this);
+    this.trigger('restored');
   };
 
   /**
@@ -227,33 +223,58 @@ const NWindow = function(options) {
     win.style.zIndex = ++zid;
     win.classList.add('active');
     // Trigger the event
-    if(events.foreground)
-      events.foreground(this);
+    this.trigger('foreground');
   };
 
   /**
     * Set the callback for an event
     * @param {string} name
     * @param {function} callback
-    * @returns {boolean}
+    * @returns {number} The callback ID
     */
   this.on = (name, callback) => {
     // Check the arguments
     if(typeof name !== 'string' || typeof callback !== 'function')
       return false;
 
+    // If no callback is set for this event...
+    if(!events.hasOwnProperty(name))
+      events[name] = [];
     // Set the callback
-    events[name] = callback;
+    events[name].push(callback);
     // Success !
-    return true;
+    return events[name].length;
   };
 
   /**
     * Remove the callback for an event
     * @param {string} name
-    * @returns {void}
+    * @param {number} [id] ID of the callback, if omitted all callbacks will be deleted
+    * @returns {boolean}
     */
-  this.off = name => { delete events[name]; };
+  this.off = (name, id = null) => {
+    // If no ID was specified...
+    if(!id) {
+      // Remove all callbacks for this event...
+      delete events[name]
+      // Success !
+      return true;
+    }
+
+    // Else, if no callback is set for this event
+    // OR if the given identifier does not refer to an existing callback...
+    if(!events.hasOwnProperty(name) || !events[name][id - 1])
+      // Failed !
+      return false;
+
+    // Remove the callback
+    // We can't delete it because it's contained into an array
+    // But using an object would be too slow so we use this way.
+    events[name][id - 1] = null;
+
+    // Success !
+    return true;
+  };
 
   /**
     * Trigger an event
@@ -263,11 +284,17 @@ const NWindow = function(options) {
     */
   this.trigger = (name, parameter) => {
     // If no callback was set for this event...
-    if(!events.hasOwnProperty(name))
+    if(!events.hasOwnProperty(name) || !events[name].length)
       return false;
 
-    // Trigger the event
-    events[name](parameter);
+    // For each callback set...
+    for(let callback of events[name])
+      // If this is a function (that can be the 'null' value is that's a removed
+      // callback)...
+      if(callback)
+        // Run it with the given parameter (if there is one)
+        callback(this, parameter);
+
     // Success !
     return true;
   };
@@ -382,8 +409,7 @@ const NWindow = function(options) {
     titleContent = null;
     titleButtons = null;
     // Trigger the event
-    if(events.closed)
-      events.closed(this);
+    this.trigger('closed');
     // Success !
   };
 
