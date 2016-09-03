@@ -481,6 +481,8 @@ const NWindow = function(options) {
     titleButtons = null;
     // Trigger the event
     this.trigger('closed');
+    // Unreference the window from the collection
+    delete Windows[id];
     // Success !
   };
 
