@@ -26,6 +26,11 @@ let isErrorRunning = false;
   * @returns {void}
   */
 const error = (message, error) => {
+  // If the given error is an instance of the <NightError> class...
+  if(error && error instanceof NightError)
+    // Make it a standard error
+    error = { message: error.message + '\n\nArguments :\n\n' + JSON.stringify(error.arguments), stack: error.stack };
+
   // If this is the child process...
   if(IS_CHILD) {
     require('electron').ipcRenderer.sendToHost('error', message, error ? { message: error.message, stack: error.stack } : undefined, true);
