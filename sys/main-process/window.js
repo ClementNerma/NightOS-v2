@@ -23,6 +23,10 @@ let zid = 0; // Z-index Identifier
   * @type {void|function} */
 let onWindowMade;
 
+/** All windows
+  * @type {object} */
+let Windows = {};
+
 /**
   * The window class
   * @param {object} options
@@ -40,6 +44,9 @@ const NWindow = function(options) {
   /** The window ID
     * @type {number} */
   const id = wdock_id++;
+
+  // Register the window
+  Windows[id] = this;
 
   /** The events
     * @type {object} */
@@ -102,12 +109,6 @@ const NWindow = function(options) {
 
   // Define a getter for the frame element
   this.__defineGetter__('frameElement', () => frame);
-
-  // Define a getter for the title
-  this.__defineGetter__('title', () => titleContent.innerText);
-
-  // Define a setter for the title
-  this.__defineSetter__('title', text => { titleContent.innerText = text; });
 
   /**
     * Display the window
@@ -220,11 +221,9 @@ const NWindow = function(options) {
       * @type {void|Element} */
     let active = wdock.getElementsByClassName('active')[0];
     // Here we use a condition to check if there is an active window
-    if(active) {
+    if(active)
       active.classList.remove('active');
-      // Trigger its 'background' event
-      active.trigger('background');
-    }
+
     // Make the window active
     win.style.zIndex = ++zid;
     win.classList.add('active');
