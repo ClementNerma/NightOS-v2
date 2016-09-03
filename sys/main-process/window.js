@@ -116,7 +116,7 @@ const NWindow = function(options) {
       win.classList.remove('invisible');
       // Trigger the event
       if(events.visible)
-        events.visible();
+        events.visible(this);
     }
   };
 
@@ -131,7 +131,7 @@ const NWindow = function(options) {
       win.classList.add('invisible');
       // Trigger the event
       if(events.hidden)
-        events.hidden();
+        events.hidden(this);
     }
   };
 
@@ -167,7 +167,7 @@ const NWindow = function(options) {
     win.classList.add('maximized');
     // Trigger the event
     if(events.maximized)
-      events.maximized();
+      events.maximized(this);
   };
 
   /**
@@ -193,7 +193,7 @@ const NWindow = function(options) {
     win.classList.add('restored');
     // Trigger the event
     if(events.restored)
-      events.restored();
+      events.restored(this);
   };
 
   /**
@@ -207,6 +207,9 @@ const NWindow = function(options) {
     * @returns {void}
     */
   this.foreground = () => {
+    // If the window was closed !
+    if(!win) return ;
+
     // If the window is already active...
     if(win.classList.contains('active'))
       // Exit
@@ -221,7 +224,7 @@ const NWindow = function(options) {
     win.classList.add('active');
     // Trigger the event
     if(events.foreground)
-      events.foreground();
+      events.foreground(this);
   };
 
   /**
@@ -286,7 +289,9 @@ const NWindow = function(options) {
       * @type {Element} */
     const button = document.createElement('span');
     button.className = 'fa fa-' + iconName;
-    button.addEventListener('click', callback);
+    button.addEventListener('click', () => {
+      callback(this);
+    });
     if(title) button.setAttribute('title', title);
     titleButtons.appendChild(button);
 
@@ -374,7 +379,7 @@ const NWindow = function(options) {
     titleButtons = null;
     // Trigger the event
     if(events.closed)
-      events.closed();
+      events.closed(this);
     // Success !
   };
 
@@ -435,6 +440,10 @@ const NWindow = function(options) {
 
   // Make this window active
   this.foreground();
+
+  // Move it
+  win.style.top  = '60px';
+  win.style.left = '40px';
 
   // Restore the window
   win.classList.add('restored');
