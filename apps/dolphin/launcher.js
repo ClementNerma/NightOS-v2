@@ -127,8 +127,16 @@
     // Close the window when the close button is clicked
     close.addEventListener('click', () => $win.close());
 
+    // Mark the task when the window is minimized...
+    $win.on('minimized', () => task.classList.add('minimized'));
+
     // Change the element's appearance when the window is made active...
-    $win.on('foreground', () => task.classList.add('active'));
+    $win.on('foreground', () => {
+      // Mark the task as active
+      task.classList.add('active');
+      // Unmark the task
+      task.classList.remove('minimized');
+    });
 
     // or inactive
     $win.on('background', () => task.classList.remove('active'));
