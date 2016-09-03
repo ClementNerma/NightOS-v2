@@ -99,7 +99,7 @@
 
     // Update the element when the title changes
     $win.on('title-changed', ($win, title) => {
-      task.innerText = title;
+      task.childNodes[0].data = title;
     });
 
     // Remove the element when the window is closed
