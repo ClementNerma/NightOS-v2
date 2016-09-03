@@ -453,7 +453,7 @@ const NWindow = function(options) {
 
   // Trigger the 'made' event
   if(onWindowMade)
-    onWindowMade(this);
+    onWindowMade(this, win);
 };
 
 let fromX, fromY, fromTop, fromLeft, fromRight, fromBottom, dragging,
