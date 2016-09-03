@@ -120,7 +120,7 @@ const NWindow = function(options) {
       // Show it
       win.classList.remove('invisible');
       // Trigger the event
-      this.trigger('visible');
+      this.trigger('shown');
     }
   };
 

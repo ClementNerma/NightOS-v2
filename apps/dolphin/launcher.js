@@ -77,11 +77,15 @@
       * @type {Element} */
     let task = document.createElement('div');
     task.innerText = $win.getTitle();
-    task.addEventListener('click', () => {
-      console.log('hello');
-      $win.foreground();
-    });
+    // When the task is clicked, make the window visible
+    task.addEventListener('click', () => $win.foreground());
     taskbar.appendChild(task);
+
+    // Change the element's appearance when the window is made active...
+    $win.on('foreground', () => { task.classList.add('active'); });
+
+    // or inactive
+    $win.on('background', () => { task.classList.remove('active'); });
 
     // Update the element when the title changes
     $win.on('title-changed', ($win, title) => {
@@ -90,5 +94,8 @@
 
     // Remove the element when the window is closed
     $win.on('closed', () => task.remove());
+
+    // If the window is visible, trigger the 'foreground' event
+    $win.trigger('foreground');
   };
 })();

@@ -98,3 +98,11 @@ body .night-window-frame:not(iframe) {
   overflow: hidden;
   cursor: default;
 }
+
+#taskbar div.active {
+  color: orange;
+}
+
+#taskbar div.invisible {
+  display: none;
+}
