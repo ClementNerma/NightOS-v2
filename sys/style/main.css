@@ -1,0 +1,90 @@
+/*
+  This file is the main stylesheet. It load the system fonts and define the
+  main tags appearance.
+*/
+
+/* Ubuntu */
+@font-face: {
+  font-family: "Ubuntu";
+  src: url("fonts/ubuntu.woff");
+}
+
+/* Free Mono */
+@font-face {
+  font-family: "Free Mono";
+  src: url("fonts/freemono.ttf");
+}
+
+/* Free Mono Bold */
+@font-face {
+  font-family: "Free Mono Bold";
+  src: url("fonts/freemono-bold.ttf");
+}
+
+/* Free Mono Italic */
+@font-face {
+  font-family: "Free Mono Italic";
+  src: url("fonts/freemono-italic.ttf");
+}
+
+/* Free Mono Bold Italic */
+@font-face {
+  font-family: "Free Mono Bold Italic";
+  src: url("fonts/freemono-bolditalic.ttf");
+}
+
+/* Nimbus Mono */
+@font-face {
+  font-family: "NimbusMono";
+  src: url("fonts/nimbusmono.otf");
+}
+
+/* Nimbus Mono Bold */
+@font-face {
+  font-family: "NimbusMono Bold";
+  src: url("fonts/nimbusmono-bold.otf");
+}
+
+/* Nimbus Mono Italic */
+@font-face {
+  font-family: "NimbusMono Italic";
+  src: url("fonts/nimbusmono-italic.otf");
+}
+
+/* Nimbus Mono Bold Italic */
+@font-face {
+  font-family: "NimbusMono Bold Italic";
+  src: url("fonts/nimbusmono-bolditalic.otf");
+}
+
+/* Liberation Mono */
+@font-face {
+  font-family: "Liberation Mono";
+  src: url("fonts/liberationmono.ttf");
+}
+
+/* Liberation Mono Bold */
+@font-face {
+  font-family: "Liberation Mono Bold";
+  src: url("fonts/liberationmono-bold.ttf");
+}
+
+/* Liberation Mono Italic */
+@font-face {
+  font-family: "Liberation Mono Italic";
+  src: url("fonts/liberationmono-italic.ttf");
+}
+
+/* Liberation Mono Bold Italic */
+@font-face {
+  font-family: "Liberation Mono Bold Italic";
+  src: url("fonts/liberationmono-bolditalic.ttf");
+}
+
+/* <body> */
+body {
+  font-family: "Ubuntu";
+  background-color: black;
+  color: white;
+  overflow: hidden;
+}

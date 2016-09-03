@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Loading...</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /**
+      * Load the system
+      * @param {Event} [event] From parent's IPC
+      * @param {object} [message] From parent's IPC
+      * @returns {void}
+      */
+    function loadSystem(event, message) {
+      /** The loader's file content
+        * @type {string} */
+      let content;
+
+      // Try to read the loader's file...
+      // Here we didn't store the 'fs' module into a constant else 'jsinit.js'
+      // redefines it, which will cause an error.
+      try { content = require('fs').readFileSync('sys/loader.js', 'utf-8'); }
+      // If fail...
+      catch(e) {
+        // Send an error signal to the main process
+        if(!IS_CHILD)
+          child_ipc.sendSync('fatal-error', ['Failed to load', 'Failed to load the system loader']);
+        else {
+          child_ipc.sendToHost('error', 'Failed to load the system loader', null, true);
+          process.exit();
+        }
+      }
+
+      // Evaluate the loader's script
+      eval(content);
+    }
+
+    // Get the child IPC
+    const child_ipc = require('electron').ipcRenderer;
+    const IS_CHILD  = !!window.location.search.length;
+
+    // When the 'ready' event is sent to the child process...
+    // We wait for this signal because it will contains some data about the
+    // application we'll launch.
+    if(IS_CHILD)
+      child_ipc.on('ready', loadSystem);
+    else // If we are in the main frame, we haven't to wait so we run the system
+      loadSystem();
+  </script>
+</body>
+</html>

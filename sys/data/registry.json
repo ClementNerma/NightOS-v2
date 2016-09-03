@@ -1,0 +1,13 @@
+{
+  "ui": {
+    "launcher": {
+        "application": "dolphin",
+        "arguments": {}
+    }
+  },
+  "crash-save": {
+    "enable": true,
+    "interval": 60000,
+    "dump-file": "/users/${USERNAME}/.sysdata/crash-saves/${APPNAME}-${TIMESTAMP}.csd"
+  }
+}
