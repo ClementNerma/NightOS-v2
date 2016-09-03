@@ -7,31 +7,21 @@
 
 /* ===== Windows and modals container ===== */
 
-/* The windows and modals container */
-#windock {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
-  font-family: "Ubuntu";
-}
-
 /* Windows */
-#windock .night-window {
+body .night-window {
   position: absolute;
+  z-index: 100;
 }
 
 /* Windows title bar */
-#windock .night-window-title {
+body .night-window-title {
   background-color: #99CCFF;
   color: white;
   padding: 0;
 }
 
 /* Windows title bar content */
-#windock .night-window-title-content {
+body .night-window-title-content {
   font-family: "Liberation Mono";
   font-size: 14px;
   padding: 5px;
@@ -40,37 +30,37 @@
   overflow: hidden;
 }
 
-#windock .night-window-title-content:hover {
+body .night-window-title-content:hover {
   cursor: default;
 }
 
 /* Windows title bar buttons */
-#windock .night-window-title-buttons {
+body .night-window-title-buttons {
   padding: 0;
   padding-left: 5px;
   border-left: 1px solid gray;
 }
 
 /* Each button on windows title bar */
-#windock .night-window-title-buttons span {
+body .night-window-title-buttons span {
   padding: 5px;
 }
 
-#windock .night-window-title-buttons span:hover {
+body .night-window-title-buttons span:hover {
   background-color: #F2F2F2;
   color: #99CCFF;
   cursor: pointer;
 }
 
 /* Windows frame */
-#windock .night-window-frame {
+body .night-window-frame {
   position: absolute;
   top: 26px;
   left: 0;
   right: 0;
 }
 
-#windock .night-window-frame:not(iframe) {
+body .night-window-frame:not(iframe) {
   background-color: white;
   color: black;
   padding: 5px;
@@ -96,4 +86,14 @@
   right: 0;
   height: 40px;
   background-color: #3399FF;
+}
+
+#taskbar div {
+  border-right: 1px solid darkgray;
+  padding: 5px;
+  display: inline-block;
+  font-family: "Liberation Mono";
+  font-size: 14px;
+  padding: 10px;
+  overflow: hidden;
 }

@@ -50,18 +50,6 @@ function loadStylesheet(name) {
   w_cover.setAttribute('id', 'webview-cover');
   document.body.appendChild(w_cover);
 
-  // Make the main window DOM tree
-  /** The windows container
-    * @type {Element} */
-  wdock = document.createElement('div');
-  wdock.setAttribute('night-role', 'window');
-  wdock.setAttribute('id', 'windock');
-  // Make the container invisible ; if the windows are displayed before the
-  // launcher is ready it will display ugly things at the screen.
-  wdock.style.display = 'none';
-  // Insert it at the beginning of the <body> tag
-  document.body.insertBefore(wdock, document.body.firstChild);
-
   // Find the launcher
   let launcher = Night.readRegistry('ui/launcher');
 

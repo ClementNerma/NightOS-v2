@@ -9,7 +9,7 @@
 // NOTE: Because this file is loaded before 'UI' which created the 'windock'
 //       element on the main frame, this variable will have the 'null' content
 //       until 'UI' set it. This is why 'wdock' is set as non-constant.
-let wdock /* Windows Dock */ = document.getElementById('windock');
+let wdock /* Windows Dock */ = document.body;
 
 /** A counter for windows identifier
   * @type {number} */
@@ -80,7 +80,7 @@ const NWindow = function(options) {
   let frame;
 
   // Append the window to the container
-  windock.appendChild(win);
+  wdock.appendChild(win);
 
   if(!options.forbidDOM) {
     // Set up the frame
@@ -217,8 +217,8 @@ const NWindow = function(options) {
 
     // Make the active window unactive
     // Here we use a condition to check if there is an active window
-    if(windock.getElementsByClassName('active').length)
-      windock.getElementsByClassName('active')[0].classList.remove('active');
+    if(wdock.getElementsByClassName('active').length)
+      wdock.getElementsByClassName('active')[0].classList.remove('active');
     // Make the window active
     win.style.zIndex = ++zid;
     win.classList.add('active');
