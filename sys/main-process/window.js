@@ -246,6 +246,11 @@ const NWindow = function(options) {
       // Exit
       return ;
 
+    // If the window is minimized...
+    if(win.classList.contains('minimized'))
+      // Remove it
+      win.classList.remove('minimized');
+
     // Make the active window unactive
     /** The active window
       * @type {void|Element} */
