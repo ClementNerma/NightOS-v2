@@ -498,7 +498,8 @@ const NWindow = function(options) {
   });
 
   // Make this window active
-  this.foreground();
+  if(!options.background)
+    this.foreground();
 
   // Restore the window
   win.classList.add('restored');
