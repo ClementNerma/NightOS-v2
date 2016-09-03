@@ -216,9 +216,15 @@ const NWindow = function(options) {
       return ;
 
     // Make the active window unactive
+    /** The active window
+      * @type {void|Element} */
+    let active = wdock.getElementsByClassName('active')[0];
     // Here we use a condition to check if there is an active window
-    if(wdock.getElementsByClassName('active').length)
-      wdock.getElementsByClassName('active')[0].classList.remove('active');
+    if(active) {
+      active.classList.remove('active');
+      // Trigger its 'background' event
+      active.trigger('background');
+    }
     // Make the window active
     win.style.zIndex = ++zid;
     win.classList.add('active');
