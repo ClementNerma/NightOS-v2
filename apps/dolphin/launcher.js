@@ -113,7 +113,16 @@
     let task = document.createElement('div');
     task.innerText = $win.getTitle();
     // When the task is clicked, make the window visible
-    task.addEventListener('click', () => $win.foreground());
+    task.addEventListener('click', () => {
+      // If the window is the active one...
+      if($win.is('active'))
+        // Minimize it
+        $win.minimize();
+      else // Else...
+        // Make it the active window
+        $win.foreground();
+    });
+
     task.className = 'task';
     taskbar.appendChild(task);
 
