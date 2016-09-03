@@ -159,6 +159,13 @@ const NWindow = function(options) {
     win.classList.remove('restored');
     // Hide the window by adding the 'minimized' class
     win.classList.add('minimized');
+    // If the window was active...
+    if(win.classList.contains('active')) {
+      // Remove the 'active' class
+      win.classList.remove('active');
+      // Trigger the 'background' event (inactive)
+      this.trigger('background');
+    }
     // Trigger the event
     this.trigger('minimized');
   };
