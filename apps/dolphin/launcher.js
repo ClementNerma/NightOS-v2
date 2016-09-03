@@ -144,6 +144,7 @@
     /** The content element
       * @type {Element} */
     let content = document.createElement('span');
+    content.setAttribute('title', $win.getTitle());
     content.innerText = $win.getTitle();
     content.className = 'content';
     task.appendChild(content);
@@ -173,7 +174,12 @@
     $win.on('background', () => task.classList.remove('active'));
 
     // Update the element when the title changes
-    $win.on('title-changed', ($win, title) => task.children[0].innerText = title);
+    $win.on('title-changed', ($win, title) => {
+      // Update the title in the taskbar
+      content.innerText = title;
+      // Update the title in the task's tooltip
+      content.setAttribute('title', title);
+    });
 
     // Remove the element when the window is closed
     $win.on('closed', () => task.remove());
