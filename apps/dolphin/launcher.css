@@ -107,12 +107,22 @@ body .night-window.minimized {
   -webkit-user-select: none;
 }
 
-/* Close button */
-#taskbar div.task span {
-  margin-left: 5px;
+/* Content */
+#taskbar div.task span.content {
+  display: inline-block;
+  width: 150px;
+  max-width: 150px;
+  max-height: 15px;
+  overflow: hidden;
 }
 
-#taskbar div.task span:hover {
+/* Close button */
+#taskbar div.task span.close {
+  margin-left: 5px;
+  float: right;
+}
+
+#taskbar div.task span.close:hover {
   cursor: pointer;
   color: red;
 }
@@ -123,7 +133,7 @@ body .night-window.minimized {
 }
 
 /* Close button for active tasks */
-#taskbar div.task.active span {
+#taskbar div.task.active span.close {
   color: darkorange;
 }
 

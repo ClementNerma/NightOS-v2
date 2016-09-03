@@ -126,7 +126,6 @@
     /** The taskbar element
       * @type {Element} */
     let task = document.createElement('div');
-    task.innerText = $win.getTitle();
 
     // When the task is clicked...
     task.addEventListener('click', () => {
@@ -141,6 +140,13 @@
 
     task.className = 'task';
     taskbar.appendChild(task);
+
+    /** The content element
+      * @type {Element} */
+    let content = document.createElement('span');
+    content.innerText = $win.getTitle();
+    content.className = 'content';
+    task.appendChild(content);
 
     /** The close element
       * @type {Element} */
@@ -167,7 +173,7 @@
     $win.on('background', () => task.classList.remove('active'));
 
     // Update the element when the title changes
-    $win.on('title-changed', ($win, title) => task.childNodes[0].data = title);
+    $win.on('title-changed', ($win, title) => task.children[0].innerText = title);
 
     // Remove the element when the window is closed
     $win.on('closed', () => task.remove());
