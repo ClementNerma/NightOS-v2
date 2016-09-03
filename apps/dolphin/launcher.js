@@ -51,4 +51,19 @@
     }
   } catch(e) {}
 
+  /* =====================
+   * = Launcher elements =
+   * ===================== */
+
+  /** The launcher element
+    * @type {ELement} */
+  let launcher = document.createElement('div');
+  launcher.setAttribute('id', 'launcher');
+  document.body.appendChild(launcher);
+
+  /** The task bar
+    * @type {ELement} */
+  let taskbar = document.createElement('div');
+  taskbar.setAttribute('id', 'taskbar');
+  document.body.appendChild(taskbar);
 })();

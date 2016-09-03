@@ -5,6 +5,8 @@
 /* Invisible elements */
 .invisible { display: none; }
 
+/* ===== Windows and modals container ===== */
+
 /* The windows and modals container */
 #windock {
   position: absolute;
@@ -72,4 +74,26 @@
   background-color: white;
   color: black;
   padding: 5px;
+}
+
+/* ===== Launcher desktop ===== */
+
+#launcher {
+  z-index: 1;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #80BFFF;
+}
+
+#taskbar {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background-color: #3399FF;
 }

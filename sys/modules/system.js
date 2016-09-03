@@ -31,10 +31,8 @@ $export.loadScript = (path, errorCallback, loadCallback) => {
 
 // When a script is loaded
 ipc.on('script-loaded', (event, path, state) => {
-  console.log(path + ' = ' + state.toString());
-  return ;
   /*// If the script failed to load
-  if(state === 'true') {
+  if(!state) {
     // Run the error callback
     if(scripts[path][0])
       scripts[path][0]();
@@ -44,8 +42,8 @@ ipc.on('script-loaded', (event, path, state) => {
       scripts[path][1]();
   }*/
 
-  if(scripts[path][state === 'true' ? 1 : 0])
-    scripts[path][state === 'true' ? 1 : 0]();
+  if(scripts[path][state ? 1 : 0])
+    scripts[path][state ? 1 : 0]();
 
   delete scripts[path];
 });

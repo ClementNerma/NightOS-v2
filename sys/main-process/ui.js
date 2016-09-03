@@ -38,6 +38,18 @@ function loadStylesheet(name) {
   loadStylesheet('font-awesome');
   loadStylesheet('main');
 
+  /** The webview container
+    * @type {Element} */
+  let w_container = document.createElement('div');
+  w_container.setAttribute('id', 'webview-container');
+  document.body.appendChild(w_container);
+
+  /** The webview cover
+    * @type {Element} */
+  let w_cover = document.createElement('div');
+  w_cover.setAttribute('id', 'webview-cover');
+  document.body.appendChild(w_cover);
+
   // Make the main window DOM tree
   /** The windows container
     * @type {Element} */

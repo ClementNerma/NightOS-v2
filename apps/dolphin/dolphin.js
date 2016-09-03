@@ -29,7 +29,7 @@ const timer = require('timer');
 
 /** The system module
   * @type {object} */
-const system = require('system');
+const system = runtime.level >= fs.ROOT_LEVEL ? require('system') : null;
 
 /** The web page's document
   * @type {Document} */

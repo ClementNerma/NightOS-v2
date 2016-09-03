@@ -11,7 +11,6 @@
   "System crashed due to a runtime error": "Le système a planté à cause d'une erreur d'exécution",
   "Failed to load the registry file": "La lecture du fichier registre a échouée",
   "Registry is not a valid JSON file, parsing failed.\nPlease fix the registry file or run NightOS in recovery mode.": "Le registre n'est pas un fichier JSON valide, le formatage a échoué. Veuillez corriger le fichier registre ou démarrer NightOS en mode récupération",
-  "Failed to load the windows stylesheet": "L'ouverture de la feuille de style pour la gestion des fenêtres a échouée",
   "No launcher defined. Please define one and restart NightOS.": "Aucun lanceur défini. Veuillez en définir un et redémarrer NightOS.",
   "An error occured": "Une erreur est survenue",
   "Can't open the application's package for \"${name}\"": "L'ouverture du paquet d'application pour \"${name}\" a échouée",

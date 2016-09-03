@@ -499,6 +499,8 @@ const Night = (new (function() {
     deepFreeze(runtime);
 
     // Make a <webview> element to run a new process
+    // NOTE : <webview> are invisibles. If the webview become visible it will be
+    // displayed as a window.
     let webview = document.createElement('webview');
     // Allow the Node.js modules usage into the child process
     webview.setAttribute('nodeintegration', '');
@@ -576,9 +578,8 @@ const Night = (new (function() {
       }
     });
 
-    document.body.appendChild(webview);
-
-    // TODO: Remove that
+    // Append the <webview> to the container
+    document.getElementById('webview-container').appendChild(webview);
     webview.style.backgroundColor = 'white';
   };
 
