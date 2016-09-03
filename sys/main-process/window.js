@@ -146,6 +146,24 @@ const NWindow = function(options) {
   this.is = state => state !== 'night-window' && win.classList.contains(state);
 
   /**
+    * Minimize the window
+    * @returns {void}
+    */
+  this.minimize = () => {
+    // If the window was already minimized...
+    if(win.classList.contains('minimized'))
+      return ;
+
+    // Remove the old classes
+    win.classList.remove('maximized');
+    win.classList.remove('restored');
+    // Hide the window by adding the 'minimized' class
+    win.classList.add('minimized');
+    // Trigger the event
+    this.trigger('minimized');
+  };
+
+  /**
     * Maximize the window
     * @returns {void}
     */
@@ -182,15 +200,21 @@ const NWindow = function(options) {
       return ;
 
     // Remove the old classes
-    win.classList.remove('minized');
     win.classList.remove('maximized');
-    // Restore the window's dimensions
-    win.style.top    = rest_dim.top;
-    win.style.left   = rest_dim.left;
-    win.style.right  = rest_dim.right;
-    win.style.bottom = rest_dim.bottom;
-    // And for the frame
-    (frame.tree || frame).style.bottom = '';
+    // If the window was minimized...
+    if(win.classList.contains('minimized'))
+      // Restore it, the dimensions were backuped by the browser
+      win.classList.remove('minimized');
+    else {
+      // Restore the window's dimensions
+      win.style.top    = rest_dim.top;
+      win.style.left   = rest_dim.left;
+      win.style.right  = rest_dim.right;
+      win.style.bottom = rest_dim.bottom;
+      // And for the frame
+      (frame.tree || frame).style.bottom = '';
+    }
+
     // Add a class marker
     win.classList.add('restored');
     // Trigger the event

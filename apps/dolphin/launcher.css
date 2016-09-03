@@ -66,6 +66,11 @@ body .night-window-frame:not(iframe) {
   padding: 5px;
 }
 
+/* Minimized windows */
+body .night-window.minimized {
+  display: none;
+}
+
 /* ===== Launcher desktop ===== */
 
 #launcher {
