@@ -66,4 +66,10 @@
   let taskbar = document.createElement('div');
   taskbar.setAttribute('id', 'taskbar');
   document.body.appendChild(taskbar);
+
+  // Put an event when a new window is made...
+  onWindowMade = ($win, el) => {
+    el.style.top  = '60px';
+    el.style.left = '40px';
+  };
 })();
