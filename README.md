@@ -1,7 +1,9 @@
 
 ![NightOS Logo](http://i.imgur.com/iRikS7cl.png)
 
-NightOS is a desktop environment which is based on a custom Linux distribution. It uses the [Electron](https://github.com/electron/electron) and [NodeJS](https://nodejs.org) technology to access the filsystem, manage the network connections, and manage applications safely.
+*Vous pouvez lire ce fichier [en français](https://github.com/ClementNerma/NightOS/blob/master/README-fr.md) !*
+
+NightOS is a desktop environment which is based on a custom Linux distribution. It uses the [Electron](https://github.com/electron/electron) and [NodeJS](https://nodejs.org) technology to access the filesystem, manage the network connections, and manage applications safely.
 
 # How does it work ?
 
@@ -47,5 +49,5 @@ connection with the use or performance of this software.
 
 # Credits
 
-NightOS was built using [NodeJS](https://nodejs.org), [Electron](https://github.com/electron/electron).
+NightOS was built using [NodeJS](https://nodejs.org) and [Electron](https://github.com/electron/electron).
 Icons from [Icons8](https://icons8.com), [Joe Parks](https://www.flickr.com/people/34450190@N08) and [Font-Awesome](http://fortawesome.github.io/Font-Awesome).
