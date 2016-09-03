@@ -219,7 +219,7 @@ const NWindow = function(options) {
     // Make the active window unactive
     /** The active window
       * @type {void|Element} */
-    let active = wdock.getElementsByClassName('active')[0];
+    let active = wdock.querySelector('.night-window.active');
     // Here we use a condition to check if there is an active window
     if(active) {
       active.classList.remove('active');
