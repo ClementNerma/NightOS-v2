@@ -204,6 +204,12 @@ const NWindow = function(options) {
   this.isHidden = () => win.classList.contains('invisible');
 
   /**
+    * Check if the window is at foreground
+    * @returns {boolean}
+    */
+  this.isActive = () => win.classList.contains('active');
+
+  /**
     * Make the window active
     * @returns {void}
     */
