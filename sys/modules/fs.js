@@ -73,6 +73,26 @@ $export.BASE_DIR = BASE_DIR;
   * @type {string} */
 $export.DIR_SEP = DIR_SEP;
 
+/** The NoAccess level
+  * @type {number} */
+this.NOACCESS_LEVEL = 1;
+
+/** The guest level
+  * @type {number} */
+this.GUEST_LEVEL = 2;
+
+/** The standard user level
+  * @type {number} */
+this.USER_LEVEL = 3;
+
+/** The administrator level
+  * @type {number} */
+this.ADMIN_LEVEL = 4;
+
+/** The system (root) level
+  * @type {number} */
+this.ROOT_LEVEL = 5;
+
 /**
   * Format a path
   * @param {string} path The path to format
