@@ -96,4 +96,5 @@ body .night-window-frame:not(iframe) {
   font-size: 14px;
   padding: 10px;
   overflow: hidden;
+  cursor: default;
 }

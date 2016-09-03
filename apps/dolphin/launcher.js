@@ -71,5 +71,24 @@
   onWindowMade = ($win, el) => {
     el.style.top  = '60px';
     el.style.left = '40px';
+
+    // Make a <div> element in the taskbar for this window
+    /** The taskbar element
+      * @type {Element} */
+    let task = document.createElement('div');
+    task.innerText = $win.getTitle();
+    task.addEventListener('click', () => {
+      console.log('hello');
+      $win.foreground();
+    });
+    taskbar.appendChild(task);
+
+    // Update the element when the title changes
+    $win.on('title-changed', ($win, title) => {
+      task.innerText = title;
+    });
+
+    // Remove the element when the window is closed
+    $win.on('closed', () => task.remove());
   };
 })();
