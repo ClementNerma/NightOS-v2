@@ -67,6 +67,12 @@
   taskbar.setAttribute('id', 'taskbar');
   document.body.appendChild(taskbar);
 
+  /** The notifications area
+    * @type {Element} */
+  let notifications = document.createElement('div');
+  notifications.setAttribute('id', 'notifications');
+  taskbar.appendChild(notifications);
+
   // Put an event when a new window is made...
   onWindowMade = ($win, el) => {
     el.style.top  = '60px';
@@ -98,9 +104,7 @@
     $win.on('background', () => task.classList.remove('active'));
 
     // Update the element when the title changes
-    $win.on('title-changed', ($win, title) => {
-      task.childNodes[0].data = title;
-    });
+    $win.on('title-changed', ($win, title) => task.childNodes[0].data = title);
 
     // Remove the element when the window is closed
     $win.on('closed', () => task.remove());

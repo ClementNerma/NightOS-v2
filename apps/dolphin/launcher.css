@@ -125,3 +125,11 @@ body .night-window-frame:not(iframe) {
 #taskbar div.invisible {
   display: none;
 }
+
+/* ===== Notification area ===== */
+#notifications {
+  display: inline-block;
+  float: right;
+  border-left: 1px solid darkgray;
+  height: 20px;
+}
