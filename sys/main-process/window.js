@@ -227,6 +227,27 @@ const NWindow = function(options) {
   };
 
   /**
+    * Set the window's title
+    * @param {string} title
+    * @returns {void}
+    */
+  this.setTitle = (title) => {
+    // If the title is vaild...
+    if(typeof title === 'string' || typeof title === 'number') {
+      // Change the title
+      titleContent.innerText = title;
+      // Trigger the event
+      this.trigger('title-changed', title);
+    }
+  };
+
+  /**
+    * Get the window's title
+    * @returns {string}
+    */
+  this.getTitle = () => titleContent.innerText;
+
+  /**
     * Set the callback for an event
     * @param {string} name
     * @param {function} callback
