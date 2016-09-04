@@ -33,7 +33,7 @@ const system = runtime.level >= fs.ROOT_LEVEL ? require('system') : null;
 
 /** The web page's document
   * @type {Document} */
-const document = system.window.document;
+const document = system ? system.window.document : null;
 
 /** The translation function
   * @type {function} */
