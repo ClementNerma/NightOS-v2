@@ -273,25 +273,6 @@ const Night = (new (function() {
     return !silent ? undefined : true;
   };
 
-  /* ==========
-   * = Modals =
-   * ========== */
-
-  /**
-    * Display an error as a dialog box
-    * @param {string|NightError} title
-    * @param {string} [message] Can be omitted if 'title' is a <NightError>
-    * @returns {void}
-    */
-  this.showError = (title, message) => {
-    if(title instanceof NightError) {
-      message = title.message;
-      title   = tr('An error has occured');
-    }
-
-    // TODO: Show the dialog box
-  };
-
   /* ================
    * =   Registry   =
    * ================ */

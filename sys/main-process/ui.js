@@ -6,6 +6,30 @@
 'use strict';
 
 /**
+  * The UI class
+  * @type {UI}
+  */
+const UI = (new (function() {
+
+  /**
+    * Display an error as a dialog box
+    * @param {string|NightError} title
+    * @param {string} [message] Can be omitted if 'title' is a <NightError>
+    * @returns {void}
+    */
+  this.showError = (title, message) => {
+    if(title instanceof NightError) {
+      message = title.message;
+      title   = tr('An error has occured');
+    }
+
+    // TODO: Show the dialog box
+    console.error('ERROR BOX' + '\n' + title + '\n' + message);
+  };
+
+})());
+
+/**
   * Load a stylesheet
   * @param {string} name
   * @returns {void}

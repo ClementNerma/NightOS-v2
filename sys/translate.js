@@ -50,7 +50,7 @@ const load_translation = (lang, setAsCurrent = false) => {
   try { pkg = fs.readFileSync(n('/sys/data/translations/' + lang + '.ntp', true), SYSTEM_ENCODING); }
   catch(e) {
     let err = new NightError('Failed to load the translation package file for "${lang}"', {lang, jsError: e});
-    Night.showError(err);
+    UI.showError(err);
     return err;
   }
 
@@ -58,7 +58,7 @@ const load_translation = (lang, setAsCurrent = false) => {
   try { pkg = JSON.parse(pkg); }
   catch(e) {
     let err = new NightError('Failed to parse the translation package, not a valid JSON file for "${lang}"', {lang, jsError: e});
-    Night.showError(err);
+    UI.showError(err);
     return err;
   }
 
