@@ -707,10 +707,18 @@ const Night = (new (function() {
       }
     });
 
+    var w = new NWindow({
+      title: pkg.name,
+      frame: webview,
+      buttons: [
+        { name: 'Close', iconName: 'times', callback: $win => $win.close() }
+      ]
+    });
+
     // Make the webview invisible by default
-    webview.classList.add('invisible');
+    //webview.classList.add('invisible');
     // Append the <webview> to the container
-    document.getElementById('webview-container').appendChild(webview);
+    //document.getElementById('webview-container').appendChild(webview);
     webview.style.backgroundColor = 'white';
   };
 
