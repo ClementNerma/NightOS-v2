@@ -261,7 +261,8 @@
   };
 
   // Display the desktop
-  launcher_cover.remove();
+  loading_cover.remove();
+  loading_style.remove();
 
   /*
    * =======================================

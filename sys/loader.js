@@ -10,6 +10,8 @@
 /** The system files to load
   * @type {array} */
 let load = [
+  // Load the loading screen
+  "main-process/loading-screen",
   // Load the debug programming interface
   "debug",
   // Initialize the system resources and the IPC communication
@@ -50,6 +52,12 @@ function loadScript() {
   // ignore it and load the next script.
   if(IS_CHILD && current.startsWith('main-process/'))
     return loadScript(); // no value returned here (loadScript is typed 'void')
+
+  // If this is the main process...
+  if(IS_MAIN && typeof loading_text !== 'undefined') {
+    // Update the loading text
+    loading_text.innerHTML = `Loading file sys/${current}.js`;
+  }
 
   /** The DOM element for the script
     * @type {Element} */
