@@ -239,12 +239,12 @@ const Night = (new (function() {
 
     /** The position of the last '.' in the file's path
       * @type {number} */
-    let index = name.lastIndexOf('.');
+    let index = path.lastIndexOf('.');
 
     // If at least one point was found into the path...
     if(index !== -1)
       // Return the extension
-      return name.substr(index + 1);
+      return path.substr(index + 1);
 
     // Else, returns nothing (no extension found)
   };
