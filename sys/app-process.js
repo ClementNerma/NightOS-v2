@@ -32,7 +32,8 @@ const vm = require('vm');
 const sandbox = {
   runtime: childReady.runtime,
   require: name => Night.require(name, childReady.runtime),
-  e, n, NighError, NightElement, NightDocument
+  require_shared: name => Night.requireSharedLibrary(name, childReady.runtime),
+  e: e, n: n, NighError: NightError, NightElement: NightElement, NightDocument: NightDocument
 };
 
 // Freeze the sandbox. The object's freeze is removed when it's passed using
