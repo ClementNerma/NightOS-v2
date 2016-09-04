@@ -201,6 +201,7 @@ body .night-window.minimized {
   padding-left: 15px;
   padding-right: 15px;
   cursor: default;
+  z-index: 999999;
 }
 
 #context-menu div:hover {
