@@ -73,10 +73,7 @@ const Night = (new (function() {
     //       on the system (FileSystem, windows management)....
     //       That's a reason of why modules are contained in the /sys folder
     try {
-      (function($export) {
-        eval(content);
-      }).apply($export, [$export]);
-      //new Function(['runtime'], content).apply(self, [runtime]);
+      new Function(['$export', 'runtime'], content).apply($export, [$export, runtime]);
       return $export;
     }
 
@@ -136,10 +133,7 @@ const Night = (new (function() {
     //       on the system (FileSystem, windows management)....
     //       That's a reason of why modules are contained in the /sys folder
     try {
-      (function($export) {
-        eval(content);
-      }).apply($export, [$export]);
-      //new Function(['runtime'], content).apply(self, [runtime]);
+      new Function(['$export', 'runtime'], content).apply($export, [$export, runtime]);
       return $export;
     }
 
