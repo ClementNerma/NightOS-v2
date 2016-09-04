@@ -80,7 +80,7 @@ const Night = (new (function() {
       return $export;
     }
 
-    catch(e) { error(tr('Error while running module "${path}"', {path: o_path}), e); }
+    catch(e) { return new NightError(tr('Error while running module "${path}"', {path: o_path}), e); }
   }
 
   // Define some local variables
