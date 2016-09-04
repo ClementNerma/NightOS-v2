@@ -174,6 +174,8 @@
         menu['Minimize'] = () => $win.minimize();
         // And a 'highlight' button
         menu['Highlight'] = () => {
+          // Make the window visible
+          $win.foreground();
           // Change the titlebar's background color
           el.children[0].style.backgroundColor = '#0059B3';
           // WHen the 'backgroundColor' property is reset, the browser uses the
