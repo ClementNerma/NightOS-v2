@@ -74,7 +74,7 @@ const Night = (new (function() {
     //       That's a reason of why modules are contained in the /sys folder
     try {
       new Function(['$export', 'runtime'], content).apply($export, [$export, runtime]);
-      return $export;
+      return ($export.$ ? $export.$ : $export);
     }
 
     catch(e) { return new NightError(tr('Error while running module "${path}"', {path: o_path}), e); }
@@ -134,7 +134,7 @@ const Night = (new (function() {
     //       That's a reason of why modules are contained in the /sys folder
     try {
       new Function(['$export', 'runtime'], content).apply($export, [$export, runtime]);
-      return $export;
+      return ($export.$ ? $export.$ : $export);
     }
 
     catch(e) { error(tr('Error while running shared library "${name}"', {name}), e); }
