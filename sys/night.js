@@ -18,6 +18,10 @@ let AID = -1
   * @type {array} */
 let processes = [];
 
+/** The applications' windows
+  * @type {object} */
+let AppWindows = {};
+
 /** Define the NightOS variables
   * @type {object} */
 let shell_vars = {
@@ -712,7 +716,7 @@ const Night = (new (function() {
       }
     });
 
-    var w = new NWindow({
+    AppWindows[AID] = new NWindow({
       title: pkg.name,
       frame: webview,
       buttons: [
