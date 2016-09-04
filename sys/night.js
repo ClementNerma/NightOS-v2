@@ -321,6 +321,41 @@ const Night = (new (function() {
   };
 
   /**
+    * Get the registry extension of an item
+    * @param {string} path
+    * @returns {string}
+    */
+  this.getRegistryExtension = (path) => {
+    // Format the path
+    path = this.normalize(path, true);
+
+    // If the item doesn't exist...
+    try { if(!fs.existsSync(path)) return 'unknown'; }
+    catch(e) { return 'unknown'; }
+
+    // If that's a folder
+    try { if(fs.lstatSync(path).isDirectory()) return 'directory'; }
+    catch(e) { return 'unknown'; }
+
+    // If that's a file...
+    try {
+      if(fs.lstatSync(path).isFile()) {
+        /** The file's extension
+          * @type {string|void} */
+        let ext = this.getExtension(path);
+
+        // If an extension was found...
+        if(ext)
+          return '.' + ext;
+      }
+
+      return 'unknown';
+    }
+
+    catch(e) { return 'unknown'; }
+  };
+
+  /**
     * Open a file
     * @param {string} path
     * @returns {boolean|NightError} True if succeed
@@ -328,21 +363,11 @@ const Night = (new (function() {
   this.openFile = (path) => {
     /** The file's extension
       * @type {string} */
-    let ext = Night.getExtension(path);
-
-    // If there is no extension...
-    if(!ext)
-      // Make it an 'unknown' file
-      ext = 'unknown';
-    else // Else...
-      // Add a point at the beginning for looking in the registry
-      ext = '.' + ext;
+    let ext = Night.getRegistryExtension(path);
 
     /** Informations about the file
       * @type {object|void} */
     let filetype = this.readRegistry(`files-type/${ext}`);
-
-    console.log(ext, filetype);
 
     // If no information was got about this file type...
     if(!filetype)

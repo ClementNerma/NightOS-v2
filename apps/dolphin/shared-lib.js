@@ -35,31 +35,7 @@ const doc = new NightDocument();
   * @param {string} path
   * @returns {string}
   */
-$export.getExtension = (path) => {
-  // If the item doesn't exist...
-  if(fs.exists(path) === false)
-    return 'unknown';
-
-  // If that's a folder...
-  if(fs.dirExists(path) === true)
-    return 'directory';
-
-  // If that's a file...
-  if(fs.fileExists(path) === true) {
-    /** The file's extension
-      * @type {string|void} */
-    let ext = Night.getExtension(path);
-
-    // If an extension was found...
-    if(ext)
-      return '.' + ext;
-    else // Else...
-      return 'unknown';
-  }
-
-  // Unknown file type (maybe a bug)
-  return 'unknown';
-};
+$export.getRegistryExtension = (path) => Night.getRegistryExtension(fs.makeAbsolute(path));
 
 /**
   * Get the filename of a path
@@ -116,7 +92,7 @@ $export.open = path => Night.openFile(path);
 $export.makeIcon = (path) => {
   /** Informations about the file
     * @type {object} */
-  let infos = $export.getFileType($export.getExtension(path)) || $export.getFileType('unknown');
+  let infos = $export.getFileType($export.getRegistryExtension(path)) || $export.getFileType('unknown');
 
   /** The element
     * @type {NightElement} */
@@ -127,7 +103,7 @@ $export.makeIcon = (path) => {
     * @type {NightElement} */
   let icon = doc.createElement('img');
   icon.className = 'dolphin-shortcut-icon';
-  icon.setAttribute('src', 'data:image/png;base64,' + reg.read('files-type/' + $export.getExtension(path) + '/icon') || reg.read('files-type/unknown/icon'));
+  icon.setAttribute('src', 'data:image/png;base64,' + reg.read('files-type/' + $export.getRegistryExtension(path) + '/icon') || reg.read('files-type/unknown/icon'));
   element.appendChild(icon);
 
   /** The filename
