@@ -25,7 +25,7 @@ let isErrorRunning = false;
   * @param {Error|NightError} [error] A JavaScript native error
   * @returns {void}
   */
-const error = (message, error) => {  
+const error = (message, error) => {
   // If the given error is an instance of the <NightError> class...
   if(error && error instanceof NightError)
     // Make it a standard error
@@ -87,7 +87,7 @@ const error = (message, error) => {
   let style = document.createElement('style');
   style.setAttribute('type', 'text/css');
   style.innerHTML = `
-  @font-face   { font-family: "Free Mono"; src: url("fonts/freemono.ttf"); }
+  @font-face   { font-family: "Free Mono"; src: url("fonts/free-mono/regular.ttf"); }
   #error_cover { background-color: #1800F4; color: white; font-family: "Free Mono";
                  position: absolute; top: 0; left: 0; right: 0; bottom: 0; padding: 10px; z-index: 99999999999; }
   a            { padding: 2px; color: red; text-decoration: underline; }
