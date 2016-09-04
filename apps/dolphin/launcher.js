@@ -263,5 +263,14 @@
    * =======================================
    */
 
-   // This part will be done in a next NightOS update
+  /** The 'dolphin' library code
+    * @type {string|NightError} */
+  const lib = Night.requireSharedLibrary('dolphin');
+
+  // If the reading failed...
+  if(e(lib))
+    error(tr('Failed to open the dolphin\'s shared library'), lib);
+
+  // Run the library
+  eval(lib);
 })();

@@ -8,16 +8,6 @@
 
 'use strict';
 
-/**
-  * Load the dolphin library
-  * @param {NightDocument} doc
-  * @returns {object|NightError}
-  */
-$export.$ = function(doc) {
-  // Check if the document is valid
-  if(!(doc instanceof NightDocument))
-    return new NightError('A NightDocument instance is required to use the dolphin library');
-
-  // Else, make the library
-  // This part will be done in a next NightOS update.
-};
+/** A <NightDocument> instance for work
+  * @type {NightDocument} */
+const doc = new NightDocument();
