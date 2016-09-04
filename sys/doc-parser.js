@@ -521,7 +521,7 @@ NightDocument.parse = (content, safe = false) => {
 // DOMEvents : HTML attributes to call a JavaScript function when there are some events
 // UnsafeTags: Unsafe tags which can permit to run, with any way, JavaScript code directly into the web page
 NightDocument.DOMEvents  = ["click", "contextmenu", "dblclick", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseout", "mouseup", "keydown", "keypress", "keyup", "abort", "beforeunload", "error", "hashchange", "load", "pageshow", "pagehide", "resize", "scroll", "unload", "blur", "change", "focus", "focusin", "focusout", "input", "invalid", "reset", "search", "select", "submit", "drag", "dragend", "dragenter", "dragleave", "dragover", "dragstart", "drop", "copy", "cut", "paste", "afterprint", "beforeprint", "abort", "canplay", "canplaythrough", "durationchange", "ended", "error", "loadeddata", "loadedmetadata", "loadstart", "pause", "play", "playing", "progress", "ratechange", "seeked", "seeking", "stalled", "suspend", "timeupdate", "volumechange", "waiting", "error", "message", "open", "online", "offline", "show", "toggle", "wheel"];
-NightDocument.UnsafeTags = ["frame", "iframe", "webkit", "script", "style", "meta", "link"];
+NightDocument.UnsafeTags = ["frame", "iframe", "webkit", "script", "style", "meta", "link", "webview", "object"];
 
 // Freeze these arrays to make malicious applications unable to modify it
 Object.freeze(NightDocument.CSSNumber);
