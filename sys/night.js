@@ -101,7 +101,7 @@ const Night = (new (function() {
 
     // If the library is not found...
     if(!regEntry)
-      return new NightError('Unknown shared library "${name}"', {name});
+      return new NightError('Shared library "${name}" was not found', {name});
 
     // Format the path with Node.js native module, and with the NightOS function
     let path = n(regEntry, true);
