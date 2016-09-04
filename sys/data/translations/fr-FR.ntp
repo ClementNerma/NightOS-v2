@@ -40,6 +40,5 @@
 
   "Bad shared library name \"${name}\"": "Nom de bibliothèque partagée invalide \"${name}\"",
   "Shared library \"${name}\" was not found": "La bibliothèque partagée \"${name}\" n'a pas été trouvée",
-  "Failed to load shared library \"${name}\"": "L'ouverture de la bibliothèque partagée \"${name}\" a échouée",
-  "Error while running shared library \"${name}\"": "Une erreur est survenue durant l'exécution de la bibliothèque partagée \"${name}\""
+  "Failed to load shared library \"${name}\"": "L'ouverture de la bibliothèque partagée \"${name}\" a échouée"
 }
