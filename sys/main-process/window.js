@@ -495,9 +495,12 @@ const NWindow = function(options) {
     this.addButton(button.name, button.iconName, button.callback, button.hidden);
   }
 
-  // If asked, show the window
-  if(options.visible)
-    this.show();
+  // If asked, move the window
+  if(typeof options.y === 'number')
+    win.style.top = options.y + 'px';
+
+  if(typeof options.x === 'number')
+    win.style.left = options.x + 'px';
 
   // Make the window draggable
   if(options.draggable !== false) {
@@ -540,6 +543,10 @@ const NWindow = function(options) {
     // Make the window active
     this.foreground();
   });
+
+  // If asked, show the window
+  if(options.visible)
+    this.show();
 
   // Make this window active
   if(!options.background)
