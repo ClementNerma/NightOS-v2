@@ -159,3 +159,13 @@ let ctx_menu;
   if(e(result))
     error(result.message, result.arguments.jsError);
 })();
+
+// Hide the context menu when a click is emitted outside of it
+document.body.addEventListener('click', event => {
+  // If the context menu is visible (not hidden)
+  // and if the click was emitted outside of it...
+  if(!ctx_menu.classList.contains('invisible') &&
+     !event.path.includes(ctx_menu))
+     // Hide it
+     ctx_menu.classList.add('invisible');
+});
