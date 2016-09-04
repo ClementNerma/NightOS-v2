@@ -227,6 +227,24 @@ const Night = (new (function() {
   };
 
   /**
+    * Get the extension of a file
+    * @param {string} path
+    * @returns {string|void} Void if the file has no extension
+    */
+  this.getExtension = path => {
+    /** The position of the last '.' in the file's path
+      * @type {number} */
+    let index = name.lastIndexOf('.');
+
+    // If at least one point was found into the path...
+    if(index !== -1)
+      // Return the extension
+      return name.substr(index + 1);
+
+    // Else, returns nothing (no extension found)
+  };
+
+  /**
     * Check if a ticket can perform an action
     * @param {object|string} ticket
     * @param {string} action
