@@ -7,9 +7,14 @@
         }
     }
   },
+
   "crash-save": {
     "enable": true,
     "interval": 60000,
     "dump-file": "/users/${USERNAME}/.sysdata/crash-saves/${APPNAME}-${TIMESTAMP}.csd"
+  },
+
+  "shared-libs": {
+    "dolphin": "/apps/dolphin/shared-lib.js"
   }
 }

@@ -75,13 +75,76 @@ const Night = (new (function() {
     try {
       (function($export) {
         eval(content);
-      }).apply($export, [$export])
+      }).apply($export, [$export]);
       //new Function(['runtime'], content).apply(self, [runtime]);
       return $export;
     }
 
     catch(e) { return new NightError(tr('Error while running module "${path}"', {path: o_path}), e); }
-  }
+  };
+
+  /**
+    * Load a shared library
+    * @param {string} path
+    * @param {object} runtime
+    * @param {boolean} [ignoreCache] Force to load the module without cache
+    * @returns {object}
+    */
+  this.requireSharedLibrary = (name, runtime, ignoreCache = false) => {
+    // Get the library into the registries
+    // TODO HERE : Check if a shared library exists, then load it like a module
+
+    // If the name is not valid...
+    if(!/^[a-zA-Z0-9_]+$/.test(name))
+      return new NightError('Bad shared library name "${name}"', {name});
+
+    /** The registry entry that points to the shared library path
+      * @type {string|void} */
+    let regEntry = this.readRegistry('shared-libs/' + name);
+
+    // If the library is not found...
+    if(!regEntry)
+      return new NightError('Unknown shared library "${name}"', {name});
+
+    // Format the path with Node.js native module, and with the NightOS function
+    let path = n(regEntry, true);
+
+    /** The module's content
+      * @type {string} */
+    let content;
+
+    // Read the cache (if not ignored)
+    if(!ignoreCache && modules_cache.hasOwnProperty(path))
+      // Use the cached content
+      content = modules_cache[path];
+    else {
+      // Read the module's file
+      try { content = fs.readFileSync(path, SYSTEM_ENCODING); }
+      catch(e) { return new NightError(tr('Failed to load shared library "${name}"', {name}), e); }
+    }
+
+    // Cache the module, if it's not too big for the cache
+    if(content.length <= MAX_MODULE_CACHE_LENGTH)
+      modules_cache[path] = content;
+
+    /** The module's 'this' object
+      * @type {object} */
+    let $export = {};
+
+    // Run the module
+    // NOTE: The module is runned in the global context, so it has a full access
+    //       on the system (FileSystem, windows management)....
+    //       That's a reason of why modules are contained in the /sys folder
+    try {
+      (function($export) {
+        eval(content);
+      }).apply($export, [$export]);
+      //new Function(['runtime'], content).apply(self, [runtime]);
+      return $export;
+    }
+
+    catch(e) { error(tr('Error while running shared library "${name}"', {name}), e); }
+  };
 
   // Define some local variables
 

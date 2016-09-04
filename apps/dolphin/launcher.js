@@ -1,6 +1,14 @@
 'use strict';
 
 (function() {
+  /*
+   * =======================================
+   * =====                             =====
+   * =====          Launcher           =====
+   * =====                             =====
+   * =======================================
+   */
+
   /** The dolphin's path
     * @type {string} */
   let path = document.currentScript // Get the current <script> element
@@ -246,4 +254,14 @@
     // If the window is visible, trigger the 'foreground' event
     $win.trigger('foreground');
   };
+
+  /*
+   * =======================================
+   * =====                             =====
+   * =====           Desktop           =====
+   * =====                             =====
+   * =======================================
+   */
+
+   // This part will be done in a next NightOS update
 })();
