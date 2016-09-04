@@ -27,6 +27,50 @@ const UI = (new (function() {
     console.error('ERROR BOX' + '\n' + title + '\n' + message);
   };
 
+  /**
+    * Display a context menu
+    * @param {object} elements
+    * @param {number} [Y]
+    * @param {number} [X]
+    * @returns {void}
+    */
+  this.showContextMenu = (elements, Y = null, X = null) => {
+    // e.g. elements = { Copy: function() { ... }, Cut: function() { ... }, "Select All": ... }
+    // Reset the context menu's content
+    ctx_menu.innerHTML = '';
+
+    // For each element in the collection...
+    for(let name of Reflect.ownKeys(elements)) {
+      /** Element's DOM
+        * @type {Element} */
+      let div = document.createElement('div');
+      div.innerText = name;
+      div.addEventListener('click', elements[name]);
+      ctx_menu.appendChild(div);
+    }
+
+    // Set the menu's position (if asked for)
+    if(Y !== null)
+      ctx_menu.style.top = Y + 'px';
+
+    if(X !== null)
+      ctx_menu.style.left = X + 'px';
+
+    // Show the menu
+    ctx_menu.classList.remove('invisible');
+  };
+
+  /**
+    * Hide the context menu
+    * @returns {void}
+    */
+  this.hideContextMenu = () => {
+    // If the context menu is visible...
+    if(!ctx_menu.classList.contains('invisible'))
+      // Hide it
+      ctx_menu.classList.add('invisible');
+  };
+
 })());
 
 /**
