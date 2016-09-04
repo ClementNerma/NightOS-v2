@@ -146,6 +146,40 @@
         $win.foreground();
     });
 
+    // When the task is "right-clicked"...
+    task.addEventListener('contextmenu', event => {
+      // Make a context menu
+      /** The context menu elements
+        * @type {object} */
+      let menu = {};
+
+      // NOTE: Here the usage of 'NOT' conditions permit to put the buttons that
+      //       make the window in a new state. The 'maximize' button have to
+      //       appear when the window is restored but also when the window is
+      //       minimized !
+      
+      // If the window is NOT restored...
+      if(!$win.is('restored'))
+        // Add a 'restore' button
+        menu['Restore'] = () => $win.restore();
+
+      // If the window is NOT maximized...
+      if(!$win.is('maximized'))
+        // Add a 'maximize' button
+        menu['Maximize'] = () => $win.maximize();
+
+      // If the window is NOT minimized...
+      if(!$win.is('minimized'))
+        // Add a 'minimize' button
+        menu['Minimize'] = () => $win.minimize();
+
+      // Add a 'close' button
+      menu['Close'] = () => $win.close();
+
+      // Show the context menu
+      UI.showContextMenu(menu, event.screenY, event.screenX);
+    });
+
     task.className = 'task';
     taskbar.appendChild(task);
 
