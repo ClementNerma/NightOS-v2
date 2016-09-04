@@ -62,6 +62,25 @@ $export.getExtension = (path) => {
 };
 
 /**
+  * Get the filename of a path
+  * @param {string} filename
+  * @returns {string}
+  */
+$export.getFilename = (path) => {
+  /** The position of the last directory separator
+    * @type {number} */
+  let index = Math.max(path.lastIndexOf('/'), path.lastIndexOf('\\'));
+
+  // If there is no separator...
+  if(index === -1)
+    // Return the entire path as the filename
+    return path;
+  else // Else...
+    // Return the last part which is the filename
+    return path.substr(index + 1);
+};
+
+/**
   * Get informations about a file type
   * @param {string} filetype
   * @returns {object|void}
@@ -88,3 +107,39 @@ $export.getDescription = filetype => ($export.getFileType(filetype) || {}).descr
   * @returns {boolean|NightError} True if succeed
   */
 $export.open = path => Night.openFile(path);
+
+/**
+  * Make a clickable icon for an item
+  * @param {string} path
+  * @returns {NightElement|boolean}
+  */
+$export.makeIcon = (path) => {
+  /** Informations about the file
+    * @type {object} */
+  let infos = $export.getFileType($export.getExtension(path)) || $export.getFileType('unknown');
+
+  /** The element
+    * @type {NightElement} */
+  let element = doc.createElement('div');
+  element.className = 'dolphin-shortcut';
+
+  /** The icon
+    * @type {NightElement} */
+  let icon = doc.createElement('img');
+  icon.className = 'dolphin-shortcut-icon';
+  icon.setAttribute('src', 'data:image/png;base64,' + reg.read('files-type/' + $export.getExtension(path) + '/icon') || reg.read('files-type/unknown/icon'));
+  element.appendChild(icon);
+
+  /** The filename
+    * @type {NightElement} */
+  let filename = doc.createElement('span');
+  filename.className = 'dolphin-shortcut-filename';
+  filename.innerHTML = $export.getFilename(path);
+  element.appendChild(filename);
+
+  // Add an event listener
+  element.addEventListener('click', () => Night.openFile(path));
+
+  // Return the element
+  return element;
+};
