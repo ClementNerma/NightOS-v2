@@ -28,10 +28,10 @@ let load = [
   "main-process/window",
   // Load the main system program
   "night",
-  // Load the UI
-  "main-process/ui",
   // Load the startup manager
-  "main-process/startup"
+  "main-process/startup",
+  // Load the UI
+  "main-process/ui"
 ];
 
 /**
