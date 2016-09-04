@@ -90,6 +90,28 @@ const NightElement = function(element, main) {
   this.__defineGetter__("previousElementSibling", () => element.previousElementSibling ? new NightElement(element.previousElementSibling, main) : element.previousElementSibling);
 
   /**
+    * Add an event listener to the element
+    * @param {string} name The event's name (e.g. "click" "mousemove")
+    * @param {function} callback
+    * @returns {boolean}
+    */
+  this.addEventListener = (name, callback) => {
+    // Check the arguments type
+    if(typeof name !== 'string' || typeof callback !== 'function')
+      return false;
+
+    // Add the event listener
+    element.addEventListener(name, () => {
+      // Here, the callback is not runned in another scope
+      // TODO: Grand access to the event data
+      callback();
+    });
+
+    // Success !
+    return true;
+  };
+
+  /**
     * Append an element as a children of this element
     * @param {Element|NightElement} child
     * @returns {void|NightError}
