@@ -93,6 +93,11 @@ this.ADMIN_LEVEL = 4;
   * @type {number} */
 this.ROOT_LEVEL = 5;
 
+// Import some Night functions
+$export.getExtension = Night.getExtension;
+$export.isParent     = Night.isParent;
+$export.parse        = Night.parse;
+
 /**
   * Format a path
   * @param {string} path The path to format
