@@ -260,6 +260,9 @@
       $win.trigger('hidden');
   };
 
+  // Display the desktop
+  launcher_cover.remove();
+
   /*
    * =======================================
    * =====                             =====

@@ -44,5 +44,6 @@
 
   "Plain text file": "Fichier texte",
   "Files directory": "Dossier de fichiers",
-  "Unknown file type": "Fichier de type inconnu"
+  "Unknown file type": "Fichier de type inconnu",
+  "Please wait...": "Veuillez patienter..."
 }

@@ -115,6 +115,12 @@ let w_cover;
   * @type {Element} */
 let ctx_menu;
 
+/** The launcher cover
+  * @type {Element} */
+// This cover permit to hide the webview of the launcher before it displays its
+// own DOM elements.
+let launcher_cover;
+
 // All the UI code is runned into an IIFE to isolate the local variables.
 // These variables are useless for the system and may polluate the global object
 // if they are not isolated.
@@ -138,6 +144,13 @@ let ctx_menu;
   // Make the context menu invisible by default
   ctx_menu.className = 'invisible';
   document.body.appendChild(ctx_menu);
+
+  // The cover will be removed by the launcher when it finished its tasks
+  launcher_cover = document.createElement('div');
+  launcher_cover.setAttribute('id', 'launcher-cover');
+  document.body.appendChild(launcher_cover);
+  launcher_cover.style.lineHeight = launcher_cover.clientHeight + 'px';
+  launcher_cover.innerHTML = tr('Please wait...');
 
   // Find the launcher
   let launcher = Night.readRegistry('ui/launcher');

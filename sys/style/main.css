@@ -13,7 +13,7 @@ body {
 
 /* Hide the <webview> */
 #webview-container {
-  z-index: 999999;
+  z-index: 1000000;
   background-color: transparent;
   position: absolute;
 }
@@ -26,4 +26,19 @@ body {
   right: 0;
   bottom: 0;
   background-color: black;
+}
+
+#launcher-cover {
+  z-index: 1000001;
+  background-color: orange;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* the 'line-height' property depends of the screen's size, so it will be set
+     by the 'ui.js' program */
+  font-size: 48px;
+  font-family: "Ubuntu";
 }
