@@ -658,7 +658,8 @@ const Night = (new (function() {
       if(critical)
         error(message);
       else
-        this.makeErrorModal(tr('Application "${name}" crashed', {name}), message);
+        // This is a temporarily solution until the modals are fully supported by the NightOS UI
+        /*this.makeErrorModal*/console.error(tr('Application "${name}" crashed', {name}), message);
     });
     // When a console message is received from the webview...
     webview.addEventListener('console-message', e => {
@@ -685,7 +686,8 @@ const Night = (new (function() {
           if(critical)
             error(event.args[2] ? tr(event.args[0], event.args[2]) : event.args[0], event.args[1]);
           else
-            this.makeErrorModal(tr('Application "${name}" crashed', {name}), tr('The application "${name}" stopped due to an error.\nPlease read informations below.') + '\n\n' + event.args[2] ? tr(event.args[0], event.args[2]) : event.args[0], event.args[1]);
+            // This is a temporarily solution until the modals are fully supported by the NightOS UI
+            /*this.makeErrorModal*/console.error(tr('Application "${name}" crashed', {name}), tr('The application "${name}" stopped due to an error.\nPlease read informations below.') + '\n\n' + event.args[2] ? tr(event.args[0], event.args[2]) : event.args[0], event.args[1]);
           break;
 
         // If it's a load script request
