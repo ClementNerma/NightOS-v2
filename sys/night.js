@@ -232,6 +232,11 @@ const Night = (new (function() {
     * @returns {string|void} Void if the file has no extension
     */
   this.getExtension = path => {
+    // If the provided path is not a string...
+    if(typeof path !== 'string')
+      // No extension found
+      return ;
+
     /** The position of the last '.' in the file's path
       * @type {number} */
     let index = name.lastIndexOf('.');
