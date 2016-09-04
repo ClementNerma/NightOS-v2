@@ -88,20 +88,33 @@ const NWindow = function(options) {
 
   if(!options.forbidDOM) {
     // Set up the frame
-    frame           = document.createElement('div');
-    frame.className = 'night-window-frame';
-    frame.innerHTML = options.content || '';
+    if(options.frame instanceof Element)
+      frame = options.frame;
+    else {
+      frame           = document.createElement('div');
+      frame.innerHTML = options.content || '';
+    }
+
+    frame.classList.add('night-window-frame');
+    frame.classList.add('night-custom-frame');
     win.appendChild(frame);
   } else {
-    /** The frame's NightDocument
-      * @type {NightDocument} */
-    frame = new NightDocument(frame, 'div', true);
-    /** The document's tree
-      * @type {NightElement} */
-    let tree       = frame.tree;
-    tree.className = 'night-window-frame';
-    tree.innerHTML = options.content || '';
-    tree.appendTo(win);
+    if(options.frame instanceof Element) {
+      options.frame.classList.add('night-window-frame');
+      options.frame.classList.add('night-custom-frame');
+      win.appendChild(options.frame);
+      frame = null;
+    } else {
+      /** The frame's NightDocument
+        * @type {NightDocument} */
+      frame = new NightDocument(frame, 'div', true);
+      /** The document's tree
+        * @type {NightElement} */
+      let tree       = frame.tree;
+      tree.className = 'night-window-frame';
+      tree.innerHTML = options.content || '';
+      tree.appendTo(win);
+    }
   }
 
   // Define a getter for the frame element

@@ -56,15 +56,20 @@ body .night-window-title-buttons span:hover {
 /* Windows frame */
 body .night-window-frame {
   position: absolute;
-  top: 26px;
   left: 0;
   right: 0;
 }
 
-body .night-window-frame:not(iframe) {
+body .night-window-frame:not(.night-custom-frame) {
   background-color: white;
+  top: 26px;
   color: black;
   padding: 5px;
+}
+
+body .night-custom-frame {
+  background-color: blue;
+  top: 5px;
 }
 
 /* Minimized windows */
