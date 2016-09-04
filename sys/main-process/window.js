@@ -6,9 +6,6 @@
 
 /** The windows and modals container
   * @type {Element} */
-// NOTE: Because this file is loaded before 'UI' which created the 'windock'
-//       element on the main frame, this variable will have the 'null' content
-//       until 'UI' set it. This is why 'wdock' is set as non-constant.
 let wdock /* Windows Dock */ = document.body;
 
 /** A counter for windows identifier
