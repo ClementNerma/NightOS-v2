@@ -179,3 +179,30 @@ body .night-window.minimized {
 #desktop-view:hover {
   background-color: #99CCFF;
 }
+
+/* Context menu */
+#context-menu {
+  font-family: "Ubuntu";
+  position: absolute;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  z-index: 4;
+  border: 1px solid gray;
+  /* no bottom border because all elements in the menu will have a border-bottom
+     property set */
+  border-bottom: none;
+}
+
+/* Context menu element */
+#context-menu div {
+  border-bottom: 1px solid gray;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: default;
+}
+
+#context-menu div:hover {
+  background-color: #3399FF;
+}

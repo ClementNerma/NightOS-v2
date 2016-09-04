@@ -53,6 +53,18 @@ function loadStylesheet(name) {
   document.body.insertBefore(style, document.body.firstChild);
 }
 
+/** The webview container
+  * @type {Element} */
+let w_container;
+
+/** The webview cover
+  * @type {Element} */
+let w_cover;
+
+/** The context menu container
+  * @type {Element} */
+let ctx_menu;
+
 // All the UI code is runned into an IIFE to isolate the local variables.
 // These variables are useless for the system and may polluate the global object
 // if they are not isolated.
@@ -60,20 +72,22 @@ function loadStylesheet(name) {
 (function() {
   // Load the system stylesheets
   loadStylesheet('font-awesome');
-  loadStylesheet('fonts');
   loadStylesheet('main');
+  loadStylesheet('fonts');
 
-  /** The webview container
-    * @type {Element} */
-  let w_container = document.createElement('div');
+  w_container = document.createElement('div');
   w_container.setAttribute('id', 'webview-container');
   document.body.appendChild(w_container);
 
-  /** The webview cover
-    * @type {Element} */
-  let w_cover = document.createElement('div');
+  w_cover = document.createElement('div');
   w_cover.setAttribute('id', 'webview-cover');
   document.body.appendChild(w_cover);
+
+  ctx_menu = document.createElement('div');
+  ctx_menu.setAttribute('id', 'context-menu');
+  // Make the context menu invisible by default
+  ctx_menu.className = 'invisible';
+  document.body.appendChild(ctx_menu);
 
   // Find the launcher
   let launcher = Night.readRegistry('ui/launcher');
