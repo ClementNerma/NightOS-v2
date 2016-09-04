@@ -33,7 +33,7 @@
   let style = document.createElement('style');
   style.setAttribute('type', 'text/css');
   style.innerHTML = stylesheet;
-  document.body.insertBefore(style, document.body.firstChild);
+  document.body.appendChild(style);
 
   // Make the windows container visible
   wdock.style.display = 'block';
