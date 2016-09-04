@@ -550,7 +550,7 @@ const Night = (new (function() {
     */
   this.launchApplication = (name, runtime, critical = false) => {
     // If no running level was specified...
-    if(!runtime.level)
+    if(!runtime || !runtime.level)
       return new NightError(tr('Running level is missing for "${name}"', {name}));
 
     // Lower-case the application's name
