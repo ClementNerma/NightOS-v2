@@ -157,7 +157,7 @@
       //       make the window in a new state. The 'maximize' button have to
       //       appear when the window is restored but also when the window is
       //       minimized !
-      
+
       // If the window is NOT restored...
       if(!$win.is('restored'))
         // Add a 'restore' button
@@ -169,9 +169,18 @@
         menu['Maximize'] = () => $win.maximize();
 
       // If the window is NOT minimized...
-      if(!$win.is('minimized'))
-        // Add a 'minimize' button
+      if(!$win.is('minimized')) {
+        // Add a 'minimize' button...
         menu['Minimize'] = () => $win.minimize();
+        // And a 'highlight' button
+        menu['Highlight'] = () => {
+          // Change the titlebar's background color
+          el.children[0].style.backgroundColor = '#0059B3';
+          // WHen the 'backgroundColor' property is reset, the browser uses the
+          // defined CSS rules, so the original background color is restored.
+          setTimeout(() => el.children[0].style.backgroundColor = '', 3000);
+        };
+      }
 
       // Add a 'close' button
       menu['Close'] = () => $win.close();
