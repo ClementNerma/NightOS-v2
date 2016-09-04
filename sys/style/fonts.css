@@ -43,98 +43,98 @@
 /* Ubuntu Condensed */
 @font-face {
   font-family: "Ubuntu Condensed";
-  src: url("fonts/ubuntu-condensed/regular.ttf");
+  src: url("fonts/ubuntu/condensed/regular.ttf");
 }
 
 /* Ubuntu Mono */
 @font-face {
   font-family: "Ubuntu Mono";
-  src: url("fonts/ubuntu-mono/regular.ttf");
+  src: url("fonts/ubuntu/mono/regular.ttf");
 }
 
 @font-face {
   font-family: "Ubuntu Bold";
-  src: url("fonts/ubuntu-mono/bold.ttf");
+  src: url("fonts/ubuntu/mono/bold.ttf");
 }
 
 @font-face {
   font-family: "Ubuntu Italic";
-  src: url("fonts/ubuntu-mono/italic.ttf");
+  src: url("fonts/ubuntu/mono/italic.ttf");
 }
 
 @font-face {
   font-family: "Ubuntu Bold Italic";
-  src: url("fonts/ubuntu-mono/bold-italic.ttf");
+  src: url("fonts/ubuntu/mono/bold-italic.ttf");
 }
 
 /* Free Mono */
 @font-face {
   font-family: "Free Mono";
-  src: url("fonts/freemono.ttf");
+  src: url("fonts/free-mono/regular.ttf");
 }
 
 /* Free Mono Bold */
 @font-face {
   font-family: "Free Mono Bold";
-  src: url("fonts/freemono-bold.ttf");
+  src: url("fonts/free-mono/bold.ttf");
 }
 
 /* Free Mono Italic */
 @font-face {
   font-family: "Free Mono Italic";
-  src: url("fonts/freemono-italic.ttf");
+  src: url("fonts/free-mono/italic.ttf");
 }
 
 /* Free Mono Bold Italic */
 @font-face {
   font-family: "Free Mono Bold Italic";
-  src: url("fonts/freemono-bolditalic.ttf");
+  src: url("fonts/free-mono/bold-italic.ttf");
 }
 
 /* Nimbus Mono */
 @font-face {
-  font-family: "NimbusMono";
-  src: url("fonts/nimbusmono.otf");
+  font-family: "Nimbus Mono";
+    src: url("fonts/nimbus-mono/regular.otf");
 }
 
 /* Nimbus Mono Bold */
 @font-face {
-  font-family: "NimbusMono Bold";
-  src: url("fonts/nimbusmono-bold.otf");
+  font-family: "Nimbus Mono Bold";
+  src: url("fonts/nimbus-mono/bold.otf");
 }
 
 /* Nimbus Mono Italic */
 @font-face {
-  font-family: "NimbusMono Italic";
-  src: url("fonts/nimbusmono-italic.otf");
+  font-family: "Nimbus Mono Italic";
+  src: url("fonts/nimbus-mono/italic.otf");
 }
 
 /* Nimbus Mono Bold Italic */
 @font-face {
-  font-family: "NimbusMono Bold Italic";
-  src: url("fonts/nimbusmono-bolditalic.otf");
+  font-family: "Nimbus Mono Bold Italic";
+  src: url("fonts/nimbus-mono/bold-italic.otf");
 }
 
 /* Liberation Mono */
 @font-face {
   font-family: "Liberation Mono";
-  src: url("fonts/liberationmono.ttf");
+  src: url("fonts/liberation-mono/regular.ttf");
 }
 
 /* Liberation Mono Bold */
 @font-face {
   font-family: "Liberation Mono Bold";
-  src: url("fonts/liberationmono-bold.ttf");
+  src: url("fonts/liberation-mono/bold.ttf");
 }
 
 /* Liberation Mono Italic */
 @font-face {
   font-family: "Liberation Mono Italic";
-  src: url("fonts/liberationmono-italic.ttf");
+  src: url("fonts/liberation-mono/italic.ttf");
 }
 
 /* Liberation Mono Bold Italic */
 @font-face {
   font-family: "Liberation Mono Bold Italic";
-  src: url("fonts/liberationmono-bolditalic.ttf");
+  src: url("fonts/liberation-mono/bold-italic.ttf");
 }
