@@ -124,20 +124,7 @@ const Night = (new (function() {
     if(content.length <= MAX_MODULE_CACHE_LENGTH)
       modules_cache[path] = content;
 
-    /** The module's 'this' object
-      * @type {object} */
-    let $export = {};
-
-    // Run the module
-    // NOTE: The module is runned in the global context, so it has a full access
-    //       on the system (FileSystem, windows management)....
-    //       That's a reason of why modules are contained in the /sys folder
-    try {
-      new Function(['$export', 'runtime'], content).apply($export, [$export, runtime]);
-      return ($export.$ ? $export.$ : $export);
-    }
-
-    catch(e) { error(tr('Error while running shared library "${name}"', {name}), e); }
+    return `(function(){let $export={};${content};return $export.$||$export})();`;
   };
 
   // Define some local variables
