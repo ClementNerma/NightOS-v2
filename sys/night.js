@@ -269,6 +269,11 @@ const Night = (new (function() {
     let slashIndex = action.indexOf('/'), group = action.substr(0, slashIndex),
         name = action.substr(group.length);
 
+    // If the permission is a single-part one (no group)
+    if(slashIndex === -1)
+      // Check the permission
+      return ticket.hasOwnProperty(action);
+
     // Check if the ticket has the permission
     let can = (ticket[group] && ticket[group].includes(name));
 
