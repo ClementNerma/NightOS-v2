@@ -4,9 +4,71 @@
 */
 
 /* Ubuntu */
-@font-face: {
+@font-face {
   font-family: "Ubuntu";
-  src: url("fonts/ubuntu.woff");
+  src: url("fonts/ubuntu/regular.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu Bold";
+  src: url("fonts/ubuntu/bold.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu Italic";
+  src: url("fonts/ubuntu/italic.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu Light";
+  src: url("fonts/ubuntu/light.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu Medium";
+  src: url("fonts/ubuntu/light.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu Bold Italic";
+  src: url("fonts/ubuntu/bold-italic.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu Light Italic";
+  src: url("fonts/ubuntu/light-italic.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu Medium Italic";
+  src: url("fonts/ubuntu/bold-italic.ttf");
+}
+
+/* Ubuntu Condensed */
+@font-face {
+  font-family: "Ubuntu Condensed";
+  src: url("fonts/ubuntu-condensed/regular.ttf");
+}
+
+/* Ubuntu Mono */
+@font-face {
+  font-family: "Ubuntu Mono";
+  src: url("fonts/ubuntu-mono/regular.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu Bold";
+  src: url("fonts/ubuntu-mono/bold.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu Italic";
+  src: url("fonts/ubuntu-mono/italic.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu Bold Italic";
+  src: url("fonts/ubuntu-mono/bold-italic.ttf");
 }
 
 /* Free Mono */
