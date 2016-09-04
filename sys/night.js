@@ -707,6 +707,8 @@ const Night = (new (function() {
       }
     });
 
+    // Make the webview invisible by default
+    webview.classList.add('invisible');
     // Append the <webview> to the container
     document.getElementById('webview-container').appendChild(webview);
     webview.style.backgroundColor = 'white';

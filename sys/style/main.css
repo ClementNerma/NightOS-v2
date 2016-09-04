@@ -12,7 +12,12 @@ body {
 }
 
 /* Hide the <webview> */
-#webview-container { z-index: -1; }
+#webview-container {
+  z-index: 999999;
+  background-color: transparent;
+  position: absolute;
+}
+
 #webview-cover {
   z-index: 0;
   position: absolute;
