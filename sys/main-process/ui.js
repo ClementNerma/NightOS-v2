@@ -171,3 +171,8 @@ window.addEventListener('click', event => {
      // Hide it
      ctx_menu.classList.add('invisible');
 });
+
+// Disable browser's native context menu
+window.addEventListener('contextmenu', event => {
+  event.preventDefault();
+});
