@@ -60,6 +60,7 @@ function loadStylesheet(name) {
 (function() {
   // Load the system stylesheets
   loadStylesheet('font-awesome');
+  loadStylesheet('fonts');
   loadStylesheet('main');
 
   /** The webview container
