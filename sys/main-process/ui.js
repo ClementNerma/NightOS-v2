@@ -45,7 +45,13 @@ const UI = (new (function() {
         * @type {Element} */
       let div = document.createElement('div');
       div.innerText = name;
-      div.addEventListener('click', elements[name]);
+      // When the element is clicked...
+      div.addEventListener('click', () => {
+        // Run the given callback
+        elements[name]();
+        // Hide the context menu
+        UI.hideContextMenu();
+      });
       ctx_menu.appendChild(div);
     }
 
