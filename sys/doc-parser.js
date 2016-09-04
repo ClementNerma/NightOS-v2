@@ -45,6 +45,7 @@ const NightElement = function(element, main) {
   this.__defineSetter__('id', id => element.id = id);
   this.__defineSetter__('innerHTML', content => element.innerHTML = NightDocument.safe(content));
   this.__defineSetter__('innerNTML', content => element.innerHTML = NightDocument.parse(content, true));
+  this.__defineSetter__('innerText', content => element.innerText = content);
 
   // Define getters for simple attributes
   this.__defineGetter__("accessKey", () => element.accessKey);
@@ -58,6 +59,7 @@ const NightElement = function(element, main) {
   this.__defineGetter__("dir", () => element.dir);
   this.__defineGetter__("id", () => element.id);
   this.__defineGetter__("innerHTML", () => element.innerHTML);
+  this.__defineGetter__("innerText", () => element.innerText);
   this.__defineGetter__("isContentEditable", () => element.isContentEditable);
   this.__defineGetter__("lang", () => element.lang);
   this.__defineGetter__("namespaceURI", () => element.namespaceURI);
