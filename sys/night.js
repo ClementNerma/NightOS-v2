@@ -320,6 +320,62 @@ const Night = (new (function() {
     return ROOT_LEVEL;
   };
 
+  /**
+    * Open a file
+    * @param {string} path
+    * @returns {boolean|NightError} True if succeed
+    */
+  this.openFile = (path) => {
+    /** The file's extension
+      * @type {string} */
+    let ext = Night.getExtension(path);
+
+    // If there is no extension...
+    if(!ext)
+      // Make it an 'unknown' file
+      ext = 'unknown';
+    else // Else...
+      // Add a point at the beginning for looking in the registry
+      ext = '.' + ext;
+
+    /** Informations about the file
+      * @type {object|void} */
+    let filetype = this.readRegistry(`files-type/${ext}`);
+
+    console.log(ext, filetype);
+
+    // If no information was got about this file type...
+    if(!filetype)
+      // Failed !
+      return false;
+
+    // If no application was provided...
+    if(!filetype.application) {
+      /** The unknown files informations
+        * @type {object|void} */
+      let unknown = this.readRegistry('files-type/unknown');
+
+      // If no 'chooser' application wasp provided...
+      if(!unknown || !unknown.application)
+        // Failed !
+        return new NightError('No application provided for unknown file types');
+
+      // Define it as the file type
+      filetype = unknown;
+    }
+
+    // Else, define the application's arguments
+    /** Application's arguments
+      * @type {object} */
+    let args = unknown.arguments || {};
+
+    // Add the file's informations
+    args.path = path;
+
+    // Launch this application
+    return this.launchApplication(unknown.application, args);
+  };
+
   /* ========
    * = Logs =
    * ======== */
