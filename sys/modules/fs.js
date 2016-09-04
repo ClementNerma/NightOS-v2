@@ -141,7 +141,7 @@ $export.cwd = () => cwd;
   * @returns {boolean|NightError}
   */
 $export.exists = (path) => {
-  try { return fs.existsSync(path); }
+  try { return fs.existsSync(n(path, true, cwd)); }
   catch(e) { return new NightError({path, jsError: e}); }
 };
 
