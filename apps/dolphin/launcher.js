@@ -272,5 +272,6 @@
     error(tr('Failed to open the dolphin\'s shared library'), lib);
 
   // Run the library
-  eval(lib);
+  // Make a 'require' function with all-powerful ticket
+  eval('let require=(name)=>Night.require(name,{ticket:{"*":true}});' + lib);
 })();

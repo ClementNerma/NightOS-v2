@@ -40,5 +40,9 @@
 
   "Bad shared library name \"${name}\"": "Nom de bibliothèque partagée invalide \"${name}\"",
   "Shared library \"${name}\" was not found": "La bibliothèque partagée \"${name}\" n'a pas été trouvée",
-  "Failed to load shared library \"${name}\"": "L'ouverture de la bibliothèque partagée \"${name}\" a échouée"
+  "Failed to load shared library \"${name}\"": "L'ouverture de la bibliothèque partagée \"${name}\" a échouée",
+
+  "Plain text file": "Fichier texte",
+  "Files directory": "Dossier de fichiers",
+  "Unknown file type": "Fichier de type inconnu"
 }
