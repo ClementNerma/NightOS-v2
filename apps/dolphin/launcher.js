@@ -251,8 +251,13 @@
     // And show it when the window is shown
     $win.on('shown', () => task.classList.remove('invisible'));
 
-    // If the window is visible, trigger the 'foreground' event
-    $win.trigger('foreground');
+    // If the window is visible...
+    if(!$win.is('invisible'))
+      // Trigger the 'foreground' event
+      $win.trigger('foreground');
+    else // Else... (invisible)
+      // Trigger the 'hidden' event
+      $win.trigger('hidden');
   };
 
   /*
