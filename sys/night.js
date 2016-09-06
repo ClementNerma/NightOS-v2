@@ -755,6 +755,11 @@ const n = Night.normalize;
   */
 const e = val => val instanceof NightError;
 
+// Load the default system's translation
+// If it fails...
+if(e(load_translation(DEFAULT_LANGUAGE)))
+  error('Failed to load the native\'s system\'s translation package', e);
+
 // Load the translation package (if asked)
 if(argv['language'])
   load_translation(argv['language'], true);

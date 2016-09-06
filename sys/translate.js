@@ -14,15 +14,22 @@
   * @returns {string|NightError}
   */
 const translate = (text, vars = {}, lang = language) => {
-  // If the translation language is different from the system's native one
-  if(lang) {
+  // If the translation language is different from the current one
+  // AND if the language is the system's native one...
+  // AND the system's native language's package was loaded (to prevent errors)
+  if(lang && lang !== DEFAULT_LANGUAGE && tr_packages.hasOwnProperty(DEFAULT_LANGUAGE)) {
     // If the translation package is not found for this language...
     if(!tr_packages.hasOwnProperty(lang))
       return new NightError('Unknown language "${lang}"', {lang});
 
+    /** The text's index in the original package
+      * @type {number} */
+    let index = tr_packages[DEFAULT_LANGUAGE].indexOf(text);
+
     // If a translation is found for this string...
-    if(tr_packages[lang].hasOwnProperty(text))
-      text = tr_packages[lang][text];
+    // AND if the text is translated in the package...
+    if(index !== -1 && typeof tr_packages[lang][index] === 'string')
+      text = tr_packages[lang][index];
   }
 
   // Parse the variables and return the result

@@ -74,6 +74,10 @@ catch(e) { error('The setup file is not a valid JSON content', e); }
 // Define the setup file as a constant
 const setup = content;
 
+/** The system's DEFAULT language
+  * @type {string} */
+const DEFAULT_LANGUAGE = 'en-US';
+
 /** The system's language
   * @type {string} */
 let language = setup.language || null;

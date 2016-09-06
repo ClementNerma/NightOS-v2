@@ -54,10 +54,12 @@ $export.load_translation = (lang, pkg) => {
   // If no package was stored in memory for this language...
   if(!tr_packages.hasOwnProperty(lang))
     // Create one (empty)
-    tr_packages[lang] = {};
+    tr_packages[lang] = [];
 
-  for(let english of Reflect.ownKeys(pkg))
-    tr_packages[lang][english] = pkg[english];
+  for(let english of Reflect.ownKeys(pkg)) {
+    tr_packages[DEFAULT_LANGUAGE].push(english);
+    tr_packages[lang].push(pkg[english]);
+  }
 };
 
 /**
