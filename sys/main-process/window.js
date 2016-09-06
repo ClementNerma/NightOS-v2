@@ -79,46 +79,19 @@ const NWindow = function(options) {
   titleButtons.className = 'night-window-title-buttons';
   title.appendChild(titleButtons);
 
-  /** The DOM element for the frame
-    * @type {Element|NightDocument} */
-  let frame;
-
   // Append the window to the container
   wdock.appendChild(win);
 
-  if(!options.forbidDOM) {
-    // Set up the frame
-    if(options.frame instanceof Element)
-      frame = options.frame;
-    else {
-      frame           = document.createElement('div');
-      frame.innerHTML = options.content || '';
-    }
+  /** The DOM element for the frame
+  * @type {Element|NightDocument} */
+  let frame = options.frame || document.createElement('div');
+  frame.innerHTML = options.content || '';
+  frame.classList.add('night-window-frame');
 
-    frame.classList.add('night-window-frame');
+  if(options.frame)
     frame.classList.add('night-custom-frame');
-    win.appendChild(frame);
-  } else {
-    if(options.frame instanceof Element) {
-      options.frame.classList.add('night-window-frame');
-      options.frame.classList.add('night-custom-frame');
-      win.appendChild(options.frame);
-      frame = null;
-    } else {
-      /** The frame's NightDocument
-        * @type {NightDocument} */
-      frame = new NightDocument(frame, 'div', true);
-      /** The document's tree
-        * @type {NightElement} */
-      let tree       = frame.tree;
-      tree.className = 'night-window-frame';
-      tree.innerHTML = options.content || '';
-      tree.appendTo(win);
-    }
-  }
 
-  // Define a getter for the frame element
-  this.__defineGetter__('frameElement', () => frame);
+  win.appendChild(frame);
 
   /**
     * Display the window
