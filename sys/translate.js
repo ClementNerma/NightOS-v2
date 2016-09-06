@@ -74,7 +74,7 @@ const load_translation = (lang, setAsCurrent = false) => {
     language = lang;
 
   // Add the parsed package to the collection
-  tr_packages[language] = pkg;
+  tr_packages[lang] = pkg;
 };
 
 /** The loaded translation packages
