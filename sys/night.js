@@ -93,7 +93,6 @@ const Night = (new (function() {
     */
   this.requireSharedLibrary = (name, runtime, ignoreCache = false) => {
     // Get the library into the registries
-    // TODO HERE : Check if a shared library exists, then load it like a module
 
     // If the name is not valid...
     if(!/^[a-zA-Z0-9_]+$/.test(name))

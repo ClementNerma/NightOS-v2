@@ -105,7 +105,7 @@ const NightElement = function(element, main) {
     // Add the event listener
     element.addEventListener(name, () => {
       // Here, the callback is not runned in another scope
-      // TODO: Grand access to the event data
+      // TODO: Grant access to the event data
       callback();
     });
 

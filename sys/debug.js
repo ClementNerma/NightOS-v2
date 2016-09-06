@@ -11,10 +11,6 @@
 
 'use strict';
 
-// TODO: There is a syntax error into 'night.js', this error is caught by
-//       process.on(...) and transmitted to 'error' but nothing is displayed
-//       on the DOM.
-
 /** Is there an error running ?
   * @type {boolean} */
 let isErrorRunning = false;
