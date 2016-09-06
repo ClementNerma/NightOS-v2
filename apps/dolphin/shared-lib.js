@@ -26,9 +26,18 @@ if(e(reg))
   // Error
   return new NightError('Failed to load the "registry" module');
 
-/** A <NightDocument> instance for work
-  * @type {NightDocument} */
-const doc = new NightDocument();
+/** The application's window
+  * @type {object} */
+const window = require('window');
+
+// If the window module failed to load...
+if(e(reg))
+  // Error
+  return new NightError('Failed to load the "window" module');
+
+/** The application's document
+  * @type {Document} */
+const doc = window.document;
 
 /**
   * Get the registry extension of an item

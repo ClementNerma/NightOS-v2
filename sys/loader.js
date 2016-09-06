@@ -22,8 +22,6 @@ let load = [
   "main-process/security",
   // Load the translation library
   "translate",
-  // Load the virtual document parser
-  "doc-parser",
   // Load the windows and modals manager
   "main-process/window",
   // Load the main system program
