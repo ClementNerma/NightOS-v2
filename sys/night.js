@@ -730,6 +730,8 @@ const Night = (new (function() {
     // Append the <webview> to the container
     //document.getElementById('webview-container').appendChild(webview);
     webview.style.backgroundColor = 'white';
+    document.querySelector('.night-window:last-child').style.zIndex = 0;
+    AppWindows[AID].show();
   };
 
   // Load some modules - removed because NightOS only use the native Node.js modules
