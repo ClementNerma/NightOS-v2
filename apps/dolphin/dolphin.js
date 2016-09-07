@@ -73,4 +73,7 @@ if(runtime.arguments.launcher) {
   if(e(content))
     // Make it fatal
     debug.error(tr('Failed to load the explorer script'), content);
+
+  // Run the explorer file
+  eval(content);
 }
