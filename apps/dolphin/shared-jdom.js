@@ -1,5 +1,21 @@
 'use strict';
 
+/** The window module
+  * @type {object} */
+const window = require('window');
+
+// If failed to load the module...
+if(e(window))
+  return new NightError('Failed to read the "window" module');
+
+/** The window's document
+  * @type {Document} */
+const document = window.document;
+
+/** The <Element> class
+  * @constructor */
+const Element = window.Element;
+
 /** Get the computed style of an element
   * @param {string} tag The element's tag
   * @return {CSSStyleDeclaraion}
