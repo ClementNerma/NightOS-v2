@@ -15,7 +15,8 @@
   },
 
   "shared-libs": {
-    "dolphin": "/apps/dolphin/shared-lib.js"
+    "dolphin": "dolphin/shared-lib.js",
+    "dolphin-jdom": "dolphin/shared-jdom.js"
   },
 
   "files-type": {
