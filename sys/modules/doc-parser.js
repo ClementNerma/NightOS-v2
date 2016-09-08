@@ -505,21 +505,21 @@ NightDocument.parse = (content, safe = false) => {
   // Perform some *little* regex :)
   content = content
     // `<div: class:"test">` => `<div class="test"></div>`
-    .replace(/<([a-zA-Z0-9_]+):( *)([^<>]+)>/g, (match, tag, spaces, attributes) => {
+    .replace(/<([a-zA-Z0-9_\-]+):( *)([^<>]+)>/g, (match, tag, spaces, attributes) => {
       if(attributes.trim().endsWith('/') || (!spaces.length && attributes.length))
         return match;
       else
         return '<' + tag + ' ' + attributes + '></' + tag + '>';
     })
     // `<div :output>` => '<div id="output">'
-    .replace(/<([a-zA-Z0-9_]+)( +):([a-zA-Z0-9_]+)( *)([^<>]*)>/g, (match, tag, spaces1, id, spaces2, rest) => {
+    .replace(/<([a-zA-Z0-9_\-]+)( +):([a-zA-Z0-9_\-]+)( *)([^<>]*)>/g, (match, tag, spaces1, id, spaces2, rest) => {
       if(!spaces2.length && rest.length)
         return match;
 
       return '<' + tag + ' id="' + id + '" ' + rest + '>';
     })
     // `<div:"Some content">` => `<div>Some content</div>`
-    .replace(/<([a-zA-Z0-9_]+):"([^"]+)"( *)([^<>]*)>/g, (match, tag, content, spaces, rest) => {
+    .replace(/<([a-zA-Z0-9_\-]+):"([^"]+)"( *)([^<>]*)>/g, (match, tag, content, spaces, rest) => {
       if(rest.trim().endsWith('/'))
         return match;
 

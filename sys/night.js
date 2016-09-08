@@ -95,7 +95,7 @@ const Night = (new (function() {
     // Get the library into the registries
 
     // If the name is not valid...
-    if(!/^[a-zA-Z0-9_]+$/.test(name))
+    if(!/^[a-zA-Z0-9_\-]+$/.test(name))
       return new NightError('Bad shared library name "${name}"', {name});
 
     /** The registry entry that points to the shared library path

@@ -366,7 +366,7 @@ const NWindow = function(options) {
     // Check the arguments
     if(iconName.split(' ').length > 1 || typeof name !== 'string' ||
        titleButtons.querySelector('[button-name="' + name + '"]') ||
-       typeof callback !== 'function' || !/^[a-zA-Z0-9_]+$/.test(name) ||
+       typeof callback !== 'function' || !/^[a-zA-Z0-9_\-]+$/.test(name) ||
        (typeof title !== 'undefined' && typeof title !== 'string'))
       return false;
 
@@ -433,7 +433,7 @@ const NWindow = function(options) {
     */
   this.removeButton = (name) => {
     // Check the name
-    if(typeof name !== 'string' || !/^[a-zA-Z0-9_]+$/.test(name))
+    if(typeof name !== 'string' || !/^[a-zA-Z0-9_\-]+$/.test(name))
       return false;
 
     /** The button's element
