@@ -10,10 +10,10 @@ if(!Night.isAllowed(runtime.ticket, 'timer'))
   error(tr('Ticket doesn\'t have the "${perm}" permission, access to "${name}" module is forbidden', {perm: 'timer', name: 'timer'}));
 
 // Export some native JS functions
-$export.setInterval   = setInterval;
-$export.setTimeout    = setTimeout;
-$export.clearTimeout  = clearTimeout;
-$export.clearInterval = clearInterval;
+$export.setInterval   = (callback, timeout) => setInterval(callback, timeout);
+$export.setTimeout    = (callback, timeout) => setTimeout(callback, timeout);
+$export.clearTimeout  = id => clearTimeout(id);
+$export.clearInterval = id => clearInterval(id);
 
 /** The timers container
   * @type {object} */
