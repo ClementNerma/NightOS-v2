@@ -23,3 +23,7 @@ document.__defineGetter__('defaultView', () => null);
 /** The application's own window
   * @type {Window} */
 $export.document = document;
+
+/** The <Element> class
+  * @constructor */
+$export.Element = Element;
