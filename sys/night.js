@@ -107,7 +107,9 @@ const Night = (new (function() {
       return new NightError('Shared library "${name}" was not found', {name});
 
     // Format the path with Node.js native module, and with the NightOS function
-    let path = n(regEntry, true);
+    // Here the file must be in the '/apps' folder, else an admin-runned application
+    // will be able to read any system file !
+    let path = n('/apps/' + n(regEntry), true);
 
     /** The module's content
       * @type {string} */
