@@ -4,5 +4,6 @@
   "Failed to load the launcher stylesheet": "L'ouverture de la feuille de style du lanceur à échouée",
   "Close the window": "Fermer la fenêtre",
   "View the desktop": "Voir le bureau",
-  "Failed to open the dolphin's shared library": "L'ouverture de la bibliothèque partagée dolphin a échouée"
+  "Failed to open the dolphin's shared library": "L'ouverture de la bibliothèque partagée dolphin a échouée",
+  "Failed to load the \"dolphin-jdom\" shared library": "L'ouverture de la bibliothèque partagée \"dolphin-jdom\" a échouée"
 }
