@@ -12,7 +12,7 @@
   /** The dolphin's path
     * @type {string} */
   let path = document.currentScript // Get the current <script> element
-              .getAttribute('src')  // Get it's source (e.g. /apps/dolphin/launcher.js)
+              .getAttribute('from') // Get it's source (e.g. /apps/dolphin/launcher.js)
               .split(SEP_REGEXP)    // Split by separators
               .slice(0, -1)         // Remove the last part (the launcher's name)
               .join('/');           // Join by slah (result e.g. /apps/dolphin)

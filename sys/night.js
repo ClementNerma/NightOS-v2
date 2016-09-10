@@ -697,16 +697,13 @@ const Night = (new (function() {
             * @type {Element} */
           let script = document.createElement('script');
           script.setAttribute('type', 'text/javascript');
-          script.setAttribute('src', event.args[0]);
-
+          script.setAttribute('from', event.args[0]);
+          
+          try { script.innerHTML = fs.readFileSync(this.normalize(event.args[0], true), SYSTEM_ENCODING); }
           // If the script failed to load...
-          script.addEventListener('error', () => {
-            webview.send('script-loaded', event.args[0], false);
-          });
+          catch(e) { webview.send('script-loaded', event.args[0], false); }
           // If the script loaded successfully...
-          script.addEventListener('load', () => {
-            webview.send('script-loaded', event.args[0], true);
-          });
+          webview.send('script-loaded', event.args[0], true);
 
           // Start the script's loading
           document.body.appendChild(script);

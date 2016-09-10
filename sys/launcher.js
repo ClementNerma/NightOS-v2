@@ -169,7 +169,7 @@ app.on('ready', function() {
   });
 
   // Load the index.html of the app.
-  mainWindow.loadURL('file:///' + (process.argv.includes('--main-frame') ? process.argv[process.argv.indexOf('--main-frame') + 1] : mainFile));
+  mainWindow.loadURL(require('path').join(__dirname, '..') + '/' + (process.argv.includes('--main-frame') ? process.argv[process.argv.indexOf('--main-frame') + 1] : mainFile));
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
