@@ -164,8 +164,8 @@ app.on('ready', function() {
   });
 
   // Emitted when the page fails to load
-  mainWindow.webContents.on('did-fail-load', function() {
-    error('Loading failed', 'Failed to load NightOS resources. Please load the application again.');
+  mainWindow.webContents.on('did-fail-load', function(event, errorCode, errorDescription, validatedURL, isMainFrame) {
+    error('Loading failed', 'Failed to load NightOS resources. Please load the application again.\nError : ' + errorCode + ', ' + errorDescription);
   });
 
   // Load the index.html of the app.
