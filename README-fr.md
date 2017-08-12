@@ -1,4 +1,8 @@
 
+# Ce projet n'est désormais plus maintenu
+
+Essayez plutôt la [nouvelle version](https://github.com/ClementNerma/NightOS).
+
 ![NightOS Logo](http://i.imgur.com/iRikS7cl.png)
 
 NightOS est un desktop environment basé sur une distribution Linux personnalisée. Il utilise les technologies [Electron](https://github.com/electron/electron) et [NodeJS](https://nodejs.org) pour accéder au système de fichiers, gérer les connexions réseaux, et gérer les applications de manière sécurisée.
