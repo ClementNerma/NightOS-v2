@@ -1,4 +1,8 @@
 
+# This is an old version of NightOS which is no longer maintained.
+
+Please try the [new version](https://github.com/ClementNerma/NightOS) instead.
+
 ![NightOS Logo](http://i.imgur.com/iRikS7cl.png)
 
 *Vous pouvez lire ce fichier [en français](https://github.com/ClementNerma/NightOS/blob/master/README-fr.md) !*
